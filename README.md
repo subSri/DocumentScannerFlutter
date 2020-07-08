@@ -59,3 +59,18 @@ After the trial period is over all Scanbot SDK functions as well as the UI compo
 stop working or may be terminated. You have to restart the app to get another trial period.
 
 To get an unrestricted "no-strings-attached" 30 day trial license, please submit the [Trial License Form](https://scanbot.io/en/sdk/demo/trial) on our website.
+
+"cPJaWtvXEJH/saeDetb6zHk8Uo72+h" +
+"Wxv1lHI1VxlnZK6vgtWD3M7n73jIjn" +
+"hVbTlGpksJ+uhY/xgkZ61cgQONQ/VJ" +
+"9TCz4SXiX8/Jnh+MYNemX6vkL2eUoL" +
+"0U0heANCj9j0nPsIqyrIVk4Z4o7NkY" +
+"s+Bx4TUcmEckuHp/ZQBXn/fwubmg2S" +
+"0ZXSFVzzd/E5FwVx+tsY2zDSNyd6YM" +
+"AVLcSbSqMtCMs3yBlmDrttAs4pSPAi" +
+"dZe1VA+iGovIA0Vy5JWtKl8ezNNYDP" +
+"0BDOsuzFbfuNcKZQ8pXPPnBIQHGq6g" +
+"Gakgp7yxX/wMqsAAiPJdwItx3hsWwQ" +
+"l6QIZNQ5RDIA==\nU2NhbmJvdFNESw" +
+"pjb20uZG9jc2Nhbi5mbHV0dGVyCjE1" +
+"OTY4NDQ3OTkKMjYyMTQzCjM=\n";
