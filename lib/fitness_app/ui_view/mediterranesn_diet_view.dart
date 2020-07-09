@@ -269,7 +269,9 @@ class MediterranesnDietView extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           left: 24, right: 24, top: 8, bottom: 16),
                       child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
+
                           new GestureDetector(
                             onTap:(){
                               Navigator.push(
@@ -347,77 +349,77 @@ class MediterranesnDietView extends StatelessWidget {
                                   Navigator.push(
                                       context,   MaterialPageRoute(builder: (context) => FeedbackScreen())
                                   );
-                                },
-                          child:Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    //New Gesture Detector
-                                    Text(
-                                      'FeedBack',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontFamily: FintnessAppTheme.fontName,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                        letterSpacing: -0.2,
-                                        color: FintnessAppTheme.darkText,
-                                      ),
+                                    },
+                                child:Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                   children: <Widget>[
+                                     Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        //New Gesture Detector
+                                        Text(
+                                          'FeedBack',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontFamily: FintnessAppTheme.fontName,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            letterSpacing: -0.2,
+                                            color: FintnessAppTheme.darkText,
+                                          ),
 
-                                    ),
-
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 4),
-                                      child: Container(
-                                        height: 4,
-                                        width: 70,
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#F56E98')
-                                              .withOpacity(0.2),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4.0)),
                                         ),
-                                        child: Row(
-                                          children: <Widget>[
-                                            Container(
-                                            width:70,
-//                                              width: ((70 / 2) *
-//                                                  animationController.value),
-                                              height: 4,
-                                              decoration: BoxDecoration(
-                                                gradient:
-                                                    LinearGradient(colors: [
-                                                  HexColor('#F56E98')
-                                                      .withOpacity(0.1),
-                                                  HexColor('#F56E98'),
-                                                ]),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(4.0)),
-                                              ),
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 4),
+                                          child: Container(
+                                            height: 4,
+                                            width: 70,
+                                            decoration: BoxDecoration(
+                                              color: HexColor('#F56E98')
+                                                  .withOpacity(0.2),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(4.0)),
                                             ),
-                                          ],
+                                            child: Row(
+                                              children: <Widget>[
+                                                Container(
+                                                width:70,
+    //                                              width: ((70 / 2) *
+    //                                                  animationController.value),
+                                                  height: 4,
+                                                  decoration: BoxDecoration(
+                                                    gradient:
+                                                        LinearGradient(colors: [
+                                                      HexColor('#F56E98')
+                                                          .withOpacity(0.1),
+                                                      HexColor('#F56E98'),
+                                                    ]),
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(4.0)),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 6),
-                                      child: Text(
-                                        '',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12,
-                                          color: FintnessAppTheme.grey
-                                              .withOpacity(0.5),
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 6),
+                                          child: Text(
+                                            '',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontFamily: FintnessAppTheme.fontName,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              color: FintnessAppTheme.grey
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ],

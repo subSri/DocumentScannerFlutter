@@ -219,22 +219,22 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 38,
-                              width: 38,
-                              child: InkWell(
-                                highlightColor: Colors.transparent,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(32.0)),
-                                onTap: () {},
-                                child: Center(
-                                  child: Icon(
-                                    Icons.keyboard_arrow_left,
-                                    color: FintnessAppTheme.grey,
-                                  ),
-                                ),
-                              ),
-                            ),
+//                            SizedBox(
+//                              height: 38,
+//                              width: 38,
+//                              child: InkWell(
+//                                highlightColor: Colors.transparent,
+//                                borderRadius: const BorderRadius.all(
+//                                    Radius.circular(32.0)),
+//                                onTap: () {},
+//                                child: Center(
+//                                  child: Icon(
+//                                    Icons.keyboard_arrow_left,
+//                                    color: FintnessAppTheme.grey,
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
                             Padding(
                               padding: const EdgeInsets.only(
                                 left: 8,
@@ -250,22 +250,22 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: 38,
-                              width: 38,
-                              child: InkWell(
-                                highlightColor: Colors.transparent,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(32.0)),
-                                onTap: () {},
-                                child: Center(
-                                  child: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: FintnessAppTheme.grey,
-                                  ),
-                                ),
-                              ),
-                            ),
+//                            SizedBox(
+//                              height: 38,
+//                              width: 38,
+//                              child: InkWell(
+//                                highlightColor: Colors.transparent,
+//                                borderRadius: const BorderRadius.all(
+//                                    Radius.circular(32.0)),
+//                                onTap: () {},
+//                                child: Center(
+//                                  child: Icon(
+//                                    Icons.keyboard_arrow_right,
+//                                    color: FintnessAppTheme.grey,
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
                           ],
                         ),
                       )
