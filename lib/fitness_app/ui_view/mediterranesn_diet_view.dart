@@ -195,36 +195,36 @@ class MediterranesnDietView extends StatelessWidget {
 
                                         children: <Widget>[
                                               Image.asset(
-                                              "assets/images/userface.png"),
+                                              "assets/fitness_app/glass.png"),
 //                                      Radius.circular(50.0),
 
 
-                                          Text(
-                                            '${(1503 * animation.value).toInt()}',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily:
-                                                  FintnessAppTheme.fontName,
-                                              fontWeight: FontWeight.normal,
-                                              fontSize: 24,
-                                              letterSpacing: 0.0,
-                                              color: FintnessAppTheme
-                                                  .nearlyDarkBlue,
-                                            ),
-                                          ),
-                                          Text(
-                                            '',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontFamily:
-                                                  FintnessAppTheme.fontName,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-                                              letterSpacing: 0.0,
-                                              color: FintnessAppTheme.grey
-                                                  .withOpacity(0.5),
-                                            ),
-                                          ),
+//                                          Text(
+//                                            '${(1503 * animation.value).toInt()}',
+//                                            textAlign: TextAlign.center,
+//                                            style: TextStyle(
+//                                              fontFamily:
+//                                                  FintnessAppTheme.fontName,
+//                                              fontWeight: FontWeight.normal,
+//                                              fontSize: 24,
+//                                              letterSpacing: 0.0,
+//                                              color: FintnessAppTheme
+//                                                  .nearlyDarkBlue,
+//                                            ),
+//                                          ),
+//                                          Text(
+//                                            '',
+//                                            textAlign: TextAlign.center,
+//                                            style: TextStyle(
+//                                              fontFamily:
+//                                                  FintnessAppTheme.fontName,
+//                                              fontWeight: FontWeight.bold,
+//                                              fontSize: 12,
+//                                              letterSpacing: 0.0,
+//                                              color: FintnessAppTheme.grey
+//                                                  .withOpacity(0.5),
+//                                            ),
+//                                          ),
                                         ],
                                       ),
                                     ),

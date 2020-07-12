@@ -10,6 +10,7 @@ import '../pages_repository.dart';
 import 'filter_page_widget.dart';
 import 'pages_widget.dart';
 
+// ignore: must_be_immutable
 class PageOperations extends StatelessWidget {
   c.Page _page;
   final PageRepository _pageRepository;
@@ -32,6 +33,7 @@ class PageOperations extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class PagesPreviewWidget extends StatefulWidget {
   c.Page page;
   final PageRepository _pageRepository;

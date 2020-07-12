@@ -1,3 +1,5 @@
+import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
+
 import '../fintness_app_theme.dart';
 import '../models/meals_list_data.dart';
 import '../../main.dart';
@@ -26,6 +28,7 @@ import '../../ui/utils.dart';
 
 import 'package:image_picker/image_picker.dart';
 
+PageRepository _pageRepository = PageRepository();
 const SCANBOT_SDK_LICENSE_KEY = "cPJaWtvXEJH/saeDetb6zHk8Uo72+h" +
     "Wxv1lHI1VxlnZK6vgtWD3M7n73jIjn" +
     "hVbTlGpksJ+uhY/xgkZ61cgQONQ/VJ" +
@@ -115,7 +118,7 @@ class MealsListView extends StatefulWidget {
 
 class _MealsListViewState extends State<MealsListView>
     with TickerProviderStateMixin {
-  PageRepository _pageRepository = PageRepository();
+
 
   AnimationController animationController;
   List<MealsListData> mealsListData = MealsListData.tabIconsList;
@@ -253,9 +256,18 @@ class MealsView extends StatelessWidget {
     DocumentScanningResult result;
     try {
       var config = DocumentScannerConfiguration(
-//        bottomBarBackgroundColor: Colors.blue,
+
+        bottomBarBackgroundColor: Colors.black,
+//        topBarBackgroundColor:Colors.white,
         ignoreBadAspectRatio: true,
         multiPageEnabled: true,
+        shutterButtonAutoOuterColor:Colors.white,
+        shutterButtonAutoInnerColor:Colors.black,
+        shutterButtonManualInnerColor:Colors.black,
+        shutterButtonManualOuterColor:Colors.white,
+        polygonColor:Colors.lightGreen,
+        polygonColorOK:Colors.lightGreen,
+        multiPageButtonHidden:true,
 
         //maxNumberOfPages: 3,
         //flashEnabled: true,
@@ -265,7 +277,7 @@ class MealsView extends StatelessWidget {
         //documentImageSizeLimit: Size(2000, 3000),
         cancelButtonTitle: "Cancel",
 
-        pageCounterButtonTitle: "%d Page(s)",
+        pageCounterButtonTitle: "%d",
         textHintOK: "Perfect, don't move...",
         //textHintNothingDetected: "Nothing",
         // ...
@@ -286,7 +298,7 @@ class MealsView extends StatelessWidget {
 
     try {
       var config = BarcodeScannerConfiguration(
-        topBarBackgroundColor: Colors.blue,
+        topBarBackgroundColor: Colors.black,
         finderTextHint: "Please align any supported barcode in the frame to scan it.",
         // ...
       );
@@ -378,7 +390,10 @@ class MealsView extends StatelessWidget {
   gotoImagesView() async {
     imageCache.clear();
     return await Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => DocumentPreview(pR)),
+      MaterialPageRoute(builder: (context) => TrainingScreen(
+        pR: pR,
+        animationController:animationController ,
+      )),
     );
   }
   @override

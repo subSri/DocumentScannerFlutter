@@ -19,10 +19,15 @@ class PageWidget extends StatelessWidget {
     //    width: double.infinity,
     // );
     Image image = Image.memory(bytes);
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      child: Center(child: image),
-    );
+//    return Image(
+//      image : NetworkImage(image.toString())
+//    );
+    return image;
+//    return Container(
+//      height: double.infinity,
+//      width: double.infinity,
+//      child: Center(child: image),
+//    );
+  return image;
   }
 }

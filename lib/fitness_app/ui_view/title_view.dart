@@ -65,11 +65,11 @@ class TitleView extends StatelessWidget {
                             SizedBox(
                               height: 38,
                               width: 26,
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: FintnessAppTheme.darkText,
-                                size: 18,
-                              ),
+//                              child: Icon(
+////                                Icons.arrow_forward,
+//                                color: FintnessAppTheme.darkText,
+//                                size: 18,
+//                              ),
                             ),
                           ],
                         ),
