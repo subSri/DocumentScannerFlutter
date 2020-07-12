@@ -135,6 +135,7 @@ class _AreaListViewState extends State<AreaListView>
 }
 
 
+// ignore: must_be_immutable
 class AreaView extends StatelessWidget {
   final int index;
 
@@ -156,11 +157,15 @@ class AreaView extends StatelessWidget {
     this.uri,
     this.animationController,
     this.animation,
-  }) : super(key: key);
+  }){
+     this.image = PageWidget(this.uri);
+   }
+
 
 
 
   final Uri uri;
+//   static Uri path = uri;
 //  static Uri path = this.uri;
   final AnimationController animationController;
   final Animation<dynamic> animation;
@@ -169,7 +174,7 @@ class AreaView extends StatelessWidget {
 //  Image image = Image.memory(bytes);
 //  final Widget image = PageWidget(uri);
 
-
+  Widget image ;
 
   
   @override
@@ -228,7 +233,7 @@ class AreaView extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(top: 5, left: 5, right: 5,bottom:5),
 
-                          child:  PageWidget(uri),
+                          child:  image,
 
                       ),
                     ],
