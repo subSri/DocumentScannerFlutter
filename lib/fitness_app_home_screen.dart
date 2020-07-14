@@ -1,3 +1,6 @@
+import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
+import 'package:scanbot_sdk_example_flutter/pdfviewcurved/detailsPage.dart';
+
 import 'fitness_app/models/tabIcon_data.dart';
 import 'fitness_app/traning/training_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +16,7 @@ class FitnessAppHomeScreen extends StatefulWidget {
 class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     with TickerProviderStateMixin {
   AnimationController animationController;
-
+  PageRepository pR;
   List<TabIconData> tabIconsList = TabIconData.tabIconsList;
 
   Widget tabBody = Container(
@@ -88,17 +91,19 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                       MyDiaryScreen(animationController: animationController);
                 });
               });
-            } else if (index == 1 || index == 3) {
-              animationController.reverse().then<dynamic>((data) {
-                if (!mounted) {
-                  return;
-                }
-                setState(() {
-                  tabBody =
-                      TrainingScreen(animationController: animationController);
-                });
-              });
             }
+//            else if (index == 1 || index == 3) {
+//              animationController.reverse().then<dynamic>((data) {
+//                if (!mounted) {
+//                  return;
+//                }
+//                setState(() {
+//                  tabBody =
+//                      PdfPreview(animationController: animationController
+//                      );
+//                });
+//              });
+//            }
           },
         ),
       ],
