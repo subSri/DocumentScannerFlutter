@@ -29,7 +29,7 @@ class MealsListData {
       endColor: '#FFB295',
     ),
     MealsListData(
-      imagePath: 'assets/fitness_app/lunch.png',
+      imagePath: 'assets/images/bar.png',
       titleTxt: 'Barcode',
 
       meals:"Scan any Barcode",
@@ -37,7 +37,7 @@ class MealsListData {
       endColor: '#5C5EDD',
     ),
     MealsListData(
-      imagePath: 'assets/fitness_app/snack.png',
+      imagePath: 'assets/images/qr.png',
       titleTxt: 'QR Code',
 
       meals: "Scan a QR Code",
@@ -45,7 +45,7 @@ class MealsListData {
       endColor: '#FF5287',
     ),
     MealsListData(
-      imagePath: 'assets/fitness_app/dinner.png',
+      imagePath: 'assets/images/mr.png',
       titleTxt: 'MRC',
 
       meals: "Scan a MRCode",

@@ -303,6 +303,9 @@ class GlassView extends StatelessWidget {
             ),
           ),
         ),
+        Padding(
+                padding: const EdgeInsets.only(
+                  left: 24, right: 24, top: 24, bottom: 0),),
       AnimatedBuilder(
         animation: animationController,
         builder: (BuildContext context, Widget child) {
