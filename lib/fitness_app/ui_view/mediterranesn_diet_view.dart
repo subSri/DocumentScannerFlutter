@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:scanbot_sdk_example_flutter/help_screen.dart';
+import 'package:scanbot_sdk_example_flutter/pdfviewcurved/detailsPage.dart';
 
 import '../../feedback_screen.dart';
 import '../fintness_app_theme.dart';
@@ -429,7 +430,8 @@ class MediterranesnDietView extends StatelessWidget {
                           new GestureDetector(
                             onTap:(){
                               Navigator.push(
-                                  context,   MaterialPageRoute(builder: (context) => HelpScreen())
+                                  context,   MaterialPageRoute(builder: (context) => PdfPreview(animationController: animationController)
+                              )
                               );
                             },
                          child: Expanded(

@@ -27,24 +27,13 @@ class _AreaListViewState extends State<AreaListView>
   List<c.Page> areaListData;
   _AreaListViewState(this.pR){
     this.areaListData = this.pR.pages;
+    print("AreaLsit");
+    print(areaListData.length);
   }
   PageRepository pR;
 
   AnimationController animationController;
-//  List<String> areaListData = <String>[
-//    'assets/fitness_app/area1.png',
-//    'assets/fitness_app/area2.png',
-//    'assets/fitness_app/area3.png',
-//    'assets/fitness_app/area1.png',
-//  ];
 
-
-//  child: GestureDetector(
-//  onTap: () {
-//  showOperationsPage(pages[position]);
-//  },
-//  child: PageWidget(
-//  pages[position].documentPreviewImageFileUri)),
 
   @override
   void initState() {
@@ -57,7 +46,9 @@ class _AreaListViewState extends State<AreaListView>
     imageCache.clear();
     Future.delayed(Duration(microseconds: 500)).then((val) {
       setState(() {
-        this.areaListData = pR.pages;
+        this.areaListData = this.pR.pages;
+        print("SetAreaLsit");
+        print(areaListData.length);
       });
     });
   }
@@ -135,13 +126,13 @@ class _AreaListViewState extends State<AreaListView>
 }
 
 
-// ignore: must_be_immutable
+
 class AreaView extends StatelessWidget {
   final int index;
 
   final List<c.Page> alist;
 
-  final PageRepository pR;
+   PageRepository pR;
 
   final BuildContext context;
 
@@ -158,7 +149,9 @@ class AreaView extends StatelessWidget {
     this.animationController,
     this.animation,
   }){
-     this.image = PageWidget(this.uri);
+
+       this.image = PageWidget(uri);
+
    }
 
 
@@ -253,13 +246,22 @@ class AreaView extends StatelessWidget {
 ////    if(!mounted) {print(mounted) ;
 ////    return;}
 
-
+      print(pR.pages.length);
 //    return;
-    await Navigator.of(this.context).push(
-      MaterialPageRoute(
-          builder: (context) => PageOperations(page, pR)),
-    );
-    _AreaListViewState(pR)._updatePagesList();
+  PageRepository newv;
+     newv = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PageOperations(page, pR)),
+    ) as PageRepository;
+//    this.pR = await Navigator.of(this.context).push(
+//      MaterialPageRoute(
+//          builder: (context) => ),
+//    );
+    // ignore: invalid_use_of_protected_member
+    print("Dance");
+    print(newv.pages.length);
+    _AreaListViewState(newv)._updatePagesList();
+
   }
 
 }
