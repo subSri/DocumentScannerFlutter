@@ -21,7 +21,7 @@ class MealsListData {
 
   static List<MealsListData> tabIconsList = <MealsListData>[
     MealsListData(
-      imagePath: 'assets/fitness_app/breakfast.png',
+      imagePath: 'assets/images/doc.png',
       titleTxt: 'Document',
       func : "startDocumentScanning()",
       meals: "Scan an image",
