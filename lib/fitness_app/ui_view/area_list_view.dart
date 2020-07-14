@@ -79,7 +79,7 @@ class _AreaListViewState extends State<AreaListView>
                 child: GridView(
 
                   padding: const EdgeInsets.only(
-                      left: 16, right: 16, top: 16, bottom: 16),
+                      left: 6, right: 6, top: 6, bottom: 6),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: List<Widget>.generate(
@@ -108,10 +108,10 @@ class _AreaListViewState extends State<AreaListView>
                     },
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 24.0,
-                    crossAxisSpacing: 24.0,
-                    childAspectRatio: 1.0,
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 18.0,
+                    crossAxisSpacing: 18.0,
+                    childAspectRatio: 0.7,
                   ),
                 ),
               ),
@@ -186,9 +186,8 @@ class AreaView extends StatelessWidget {
                 0.0, 50 * (1.0 - animation.value), 0.0),
 
              child: Container(
-
-//              height: MediaQuery.of(context).size.height / 2,
-                height: 200.0,
+                //height: MediaQuery.of(context).size.height / 2,
+                height: 100.0,
 
 
               decoration: BoxDecoration(
@@ -227,7 +226,6 @@ class AreaView extends StatelessWidget {
                             const EdgeInsets.only(top: 5, left: 5, right: 5,bottom:5),
 
                           child:  image,
-
                       ),
                     ],
                   ),
