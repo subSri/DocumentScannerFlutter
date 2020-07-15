@@ -108,10 +108,10 @@ class _AreaListViewState extends State<AreaListView>
                     },
                   ),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                    crossAxisCount: 2,
                     mainAxisSpacing: 18.0,
                     crossAxisSpacing: 18.0,
-                    childAspectRatio: 0.89,
+                    childAspectRatio: 0.75,
                   ),
                 ),
               ),
