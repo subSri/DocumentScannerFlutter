@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:scanbot_sdk_example_flutter/fitness_app/fintness_app_theme.dart';
+import 'package:scanbot_sdk_example_flutter/pdfviewcurved/boom_menu.dart';
 import 'detailsPage.dart';
+import 'package:open_file/open_file.dart';
 
 
 
@@ -11,15 +14,17 @@ class PdfListView extends StatefulWidget {
 
   final Directory dir;
 
+  final List<FileSystemEntity> allfiles;
+
 
   const PdfListView(
-      {Key key,this.dir, this.files,this.mainScreenAnimationController, this.mainScreenAnimation})
+      {Key key,this.allfiles,this.dir, this.files,this.mainScreenAnimationController, this.mainScreenAnimation})
       : super(key: key);
 
   final AnimationController mainScreenAnimationController;
   final Animation<dynamic> mainScreenAnimation;
   @override
-  _PdfListViewState createState() => _PdfListViewState(dir,files);
+  _PdfListViewState createState() => _PdfListViewState(allfiles,dir,files);
 }
 
 
@@ -27,7 +32,11 @@ class PdfListView extends StatefulWidget {
 AnimationController animationController;
 class _PdfListViewState extends State<PdfListView> with TickerProviderStateMixin{
   List<FileSystemEntity> files;
-  _PdfListViewState(dir,files){
+  List<FileSystemEntity> allfiles;
+
+  var _tapPosition;
+  _PdfListViewState(allfiles,dir,files){
+    this.allfiles = allfiles;
     this.dir = dir;
     this.files = files;
     print("Files are as follows");
@@ -37,6 +46,7 @@ class _PdfListViewState extends State<PdfListView> with TickerProviderStateMixin
 Directory dir;
   @override
   void initState() {
+    _tapPosition=Offset(0.0,0.0);
     animationController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
@@ -47,7 +57,20 @@ Directory dir;
 
     Future.delayed(Duration(microseconds: 500)).then((val) {
       setState(() {
-        this.files = dir.listSync(recursive: true, followLinks: false);
+        this.allfiles = dir.listSync(recursive: false, followLinks: false);
+
+
+        if (files!=null){
+          this.files.clear();
+        }
+        for (int i = 0; i < allfiles.length; i++) {
+          print(allfiles[i].path);
+          if (allfiles[i].path.endsWith('.pdf')) {
+            this.files.add(allfiles[i]);
+          }
+        }
+
+
       });
     });
   }
@@ -110,14 +133,14 @@ Directory dir;
                                               files[index].path
                                                   .split('/')
                                                   .last
-                                                  .substring(0, 17) + ".pdf");
+                                                  .substring(0, 17) + ".pdf",files[index].path);
                                         }
                                         else {
                                           return buildPdfItem(
                                               'assets/images/file-pdf-icon.png',
                                               files[index].path
                                                   .split('/')
-                                                  .last);
+                                                  .last,files[index].path);
                                         }
                                       }
 //
@@ -193,28 +216,35 @@ Directory dir;
   }
 //
 
-  Widget buildPdfItem(String imgPath, String foodName) {
+  Widget buildPdfItem(String imgPath, String foodName,String path) {
     return Padding(
         padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+      child:Container(
+//      color:Colors.amber,
+      child:Material(
+        color: Colors.white,
         child: InkWell(
 
+
+
             onTap: () {
+
+              OpenFile.open(path);
 //              Navigator.of(context).push(MaterialPageRoute(
 ////                  builder: (context) => DetailsPage(heroTag: imgPath, foodName: foodName, foodPrice: price)
 //              ));
             },
-            focusColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            hoverColor: Colors.transparent,
             splashColor: FintnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
             child: Row(
+
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
+
                     child: Row(
                         children: [
-                          Hero(
-                              tag: imgPath,
+                          Container(
+
                               child: Image(
                                   image: AssetImage(imgPath),
                                   fit: BoxFit.cover,
@@ -249,16 +279,152 @@ Directory dir;
                         ]
                     )
                 ),
-                IconButton(
-                    icon: Icon(Icons.add),
-                    color: Colors.black,
-                    onPressed: () {} //add options to pdf
-                )
-              ],
+                PopupMenuButton(
+                  onSelected: (v){
+                if (v==1){
+                         onOpenPdf(path);
+                }
+                else if(v==2){
+                         onSharePdf(path);
+                }
+                else if(v==3){
+                        onDeletePdf(files,path);
+                }
+                },
+                      itemBuilder: (context) => [
+                      PopupMenuItem(
+                          value:1,
+                          child:InkWell(
+                            child: Text("View"),
+
+                          )
+
+
+                      ),
+                      PopupMenuItem(
+                        value:2,
+                        child:InkWell(
+
+                          child: Text("Share"),
+
+                        ),
+                      ),
+
+                      PopupMenuItem(
+                          value: 3,
+                          child:InkWell(
+                            //              onTap: onDeletePdf(files,path),
+                            child: Text("Delete"),
+
+                          )
+                      ),
+
+                    ],
+                  ),
+    ],
+                ),
+
+
+//                  getboomMenu(),
+//              GestureDetector(
+//
+//                onTapDown:  _storePosition,
+//                    onTap:(){
+//                      _showPopupMenu(path);
+//                        },
+////                    child:IconButton(
+////                     icon: Icon(Icons.add),
+////                    color: Colors.black,
+//
+////                      onPressed: ()  async {
+////                        await _showPopupMenu();
+//////                     List<FileSystemEntity> newl = await Navigator.push(context, MaterialPageRoute(builder: (context) => Boom_Menu(files,foodName,context)));
+//////                      child:getboomMenu();
+//////                      _updatePdflist();
+////                    } //add options to pdf
+////                    ),
+//              ),
+//              ],
             )
 
-        ));
+        )
+      ),
+      );
+//    );
   }
+
+  void _storePosition(TapDownDetails details) {
+    setState(() {
+      _tapPosition =  details.globalPosition;
+    });
+
+  }
+   _showPopupMenu(path)  async {
+    final RenderBox overlay = Overlay.of(context).context.findRenderObject();
+
+    await showMenu(
+        context: context,
+        position: RelativeRect.fromRect(
+        _tapPosition &  Size(40, 40), // smaller rect, the touch area
+    Offset.zero & overlay.size // Bigger rect, the entire screen
+    ),
+//    await showMenu(
+//      context: context,
+//      position: RelativeRect.fromLTRB(1000, 100, 100, 400),
+      items: [
+        PopupMenuItem(
+
+          child: Row(
+              children: <Widget>[
+            PopupMenuItem(
+            value:1,
+                child:InkWell(
+                  onLongPress: onOpenPdf(path),
+                        child: Text("View"),
+
+          )
+
+
+        ),
+              PopupMenuItem(
+                value:2,
+                  child:InkWell(
+                    onLongPress: onSharePdf(path),
+                     child: Text("Share"),
+
+          ),
+          ),
+
+                PopupMenuItem(
+                  value: 3,
+                    child:InkWell(
+        //              onTap: onDeletePdf(files,path),
+                      child: Text("Delete"),
+
+            )
+        ),
+          ],
+          ),
+        ),
+      ],
+      elevation: 8.0,
+    );
+  }
+
+   onDeletePdf(files,path) {
+     File file = new File(path);
+     file.delete();
+    _updatePdflist();
+  }
+
+   onOpenPdf(path) {
+    OpenFile.open(path);
+  }
+
+   onSharePdf(path){
+    print("Share");
+  }
+
 }
 
 

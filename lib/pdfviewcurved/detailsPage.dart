@@ -55,9 +55,8 @@ Future<void> testStatus() async{
     print("Granted");
     setState(() {
       this.allfiles = dir.listSync(recursive: false, followLinks: false);
-      if (allfiles!=null) {
 
-        this.allfiles = dir.listSync(recursive: false, followLinks: false);
+
         if (_files!=null){
           this._files.clear();
         }
@@ -67,7 +66,7 @@ Future<void> testStatus() async{
             this._files.add(allfiles[i]);
           }
         }
-      }
+
       print("test status");
       print(_files);
     });
@@ -152,7 +151,7 @@ Future<void> testStatus() async{
     listViews.add(
       PdfListView(
         dir:dir,
-
+        allfiles: allfiles,
         files:this._files,
         mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
@@ -289,7 +288,7 @@ Future<void> testStatus() async{
 
     Future.delayed(Duration(microseconds: 500)).then((val) {
       setState(() {
-//        this._files = dir.listSync(recursive: true, followLinks: false);
+        this._files = dir.listSync(recursive: false, followLinks: false);
       });
     });
   }
