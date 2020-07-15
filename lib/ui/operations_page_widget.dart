@@ -48,7 +48,7 @@ class PagesPreviewWidget extends StatefulWidget {
 
 class PagesPreviewWidgetState extends State<PagesPreviewWidget> {
   c.Page page;
-  final PageRepository _pageRepository;
+  PageRepository _pageRepository;
 
   PagesPreviewWidgetState(this.page, this._pageRepository);
 
@@ -66,8 +66,20 @@ class PagesPreviewWidgetState extends State<PagesPreviewWidget> {
       children: <Widget>[
         Expanded(
             child: Container(
-                padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
-                child: Center(child: PageWidget(page.documentImageFileUri)))),
+                padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: MediaQuery.of(context).size.width * .80,
+                      height: MediaQuery.of(context).size.height * .70,
+                      child: PageWidget(page.documentImageFileUri) ,
+                    ),
+                  ],
+                )
+            )
+        ),
         BottomAppBar(
           child: new Row(
             mainAxisSize: MainAxisSize.max,

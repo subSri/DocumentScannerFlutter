@@ -130,7 +130,7 @@ class _AreaListViewState extends State<AreaListView>
 class AreaView extends StatelessWidget {
   final int index;
 
-  final List<c.Page> alist;
+   List<c.Page> alist;
 
    PageRepository pR;
 
