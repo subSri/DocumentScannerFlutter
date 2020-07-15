@@ -20,6 +20,7 @@ import 'package:scanbot_sdk/mrz_scanning_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 import 'package:scanbot_sdk/scanbot_sdk_models.dart';
 import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
+import 'package:downloads_path_provider/downloads_path_provider.dart';
 
 import '../../fitness_app_home_screen.dart';
 import '../../pages_repository.dart';
@@ -52,8 +53,8 @@ initScanbotSdk() async {
     loggingEnabled: true, // Consider switching logging OFF in production builds for security and performance reasons.
     licenseKey: SCANBOT_SDK_LICENSE_KEY,
     imageFormat: ImageFormat.JPG,
-    imageQuality: 80,
-    storageBaseDirectory: customStorageBaseDirectory,
+    imageQuality: 100,
+    storageBaseDirectory: customStorageBaseDirectory.path+"/DocScan",
   );
 
   try {
@@ -64,7 +65,7 @@ initScanbotSdk() async {
 }
 
 
-Future<String> getDemoStorageBaseDirectory() async {
+Future<Directory> getDemoStorageBaseDirectory() async {
   // !! Please note !!
   // It is strongly recommended to use the default (secure) storage location of the Scanbot SDK.
   // However, for demo purposes we overwrite the "storageBaseDirectory" of the Scanbot SDK by a custom storage directory.
@@ -86,7 +87,8 @@ Future<String> getDemoStorageBaseDirectory() async {
 
   Directory storageDirectory;
   if (Platform.isAndroid) {
-    storageDirectory = await getExternalStorageDirectory();
+    Future<Directory> storageDirectory1 = DownloadsPathProvider.downloadsDirectory;
+    return storageDirectory1;
   }
   else if (Platform.isIOS) {
     storageDirectory = await getApplicationDocumentsDirectory();
@@ -95,7 +97,7 @@ Future<String> getDemoStorageBaseDirectory() async {
     throw("Unsupported platform");
   }
 
-  return "${storageDirectory.path}/my-custom-storage";
+  //return "${storageDirectory.path}/DocScan";
 }
 
 
@@ -456,7 +458,7 @@ class MealsView extends StatelessWidget {
 
                            child: Padding(
                               padding: const EdgeInsets.only(
-                                  top: 54, left: 16, right: 16, bottom: 8),
+                                  top: 100, left: 16, right: 16, bottom: 8),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -491,7 +493,7 @@ class MealsView extends StatelessWidget {
                                         fontFamily: FintnessAppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 10,
-                                        letterSpacing: 0.2,
+                                        letterSpacing: 0.1,
                                         color: FintnessAppTheme.white,
                                       ),
 
@@ -509,10 +511,10 @@ class MealsView extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 0,
-                    left: 0,
+                    top: 40,
+                    left: 20,
                     child: Container(
-                      width: 84,
+                      width: 94,
                       height: 84,
                       decoration: BoxDecoration(
                         color: FintnessAppTheme.nearlyWhite.withOpacity(0.2),
@@ -521,11 +523,11 @@ class MealsView extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 0,
-                    left: 8,
+                    top: 35,
+                    left: 40,
                     child: SizedBox(
-                      width: 80,
-                      height: 80,
+                      width: 60,
+                      height: 90,
                       child: Image.asset(mealsListData.imagePath),
                     ),
                   )
