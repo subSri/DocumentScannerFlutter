@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:downloads_path_provider/downloads_path_provider.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../fitness_app/ui_view/title_view.dart';
@@ -23,22 +24,21 @@ class PdfPreview extends StatefulWidget {
 class _PdfPreviewState extends State<PdfPreview>
     with TickerProviderStateMixin {
 
-  static Future<Directory> getDemoStorageBaseDirectory() async {
+  Future<Directory> getDemoStorageBaseDirectory() async {
+    Directory storageDirectory;
+    if (Platform.isAndroid) {
+      Future<Directory> storageDirectory1 = DownloadsPathProvider.downloadsDirectory;
+      return storageDirectory1;
+    }
+    else if (Platform.isIOS) {
+      storageDirectory = await getApplicationDocumentsDirectory();
+    }
+    else {
+      throw("Unsupported platform");
+    }
 
-  Directory storageDirectory;
-  if (Platform.isAndroid) {
-    storageDirectory = await getExternalStorageDirectory();
+    return storageDirectory;
   }
-  else if (Platform.isIOS) {
-    storageDirectory = await getApplicationDocumentsDirectory();
-  }
-  else {
-    throw("Unsupported platform");
-  }
-  print("Path is");
-  print(storageDirectory.path);
-  return storageDirectory;
-}
   static String path ;
   static Directory dir;
 List<FileSystemEntity> allfiles;
@@ -49,7 +49,7 @@ List<FileSystemEntity> allfiles;
 Future<void> testStatus() async{
   print(_status);
    path = (await getDemoStorageBaseDirectory()).path;
-   dir = Directory(path+"/my-custom-storage") ;
+   dir = Directory(path+"/DocScan") ;
   print(dir.path.toString());
   if (_status == PermissionStatus.granted){
     print("Granted");
