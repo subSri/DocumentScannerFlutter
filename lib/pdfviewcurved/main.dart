@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:scanbot_sdk_example_flutter/fitness_app/fintness_app_theme.dart';
-import 'package:scanbot_sdk_example_flutter/pdfviewcurved/boom_menu.dart';
+
 import 'detailsPage.dart';
 import 'package:open_file/open_file.dart';
 
@@ -324,27 +324,6 @@ Directory dir;
     ],
                 ),
 
-
-//                  getboomMenu(),
-//              GestureDetector(
-//
-//                onTapDown:  _storePosition,
-//                    onTap:(){
-//                      _showPopupMenu(path);
-//                        },
-////                    child:IconButton(
-////                     icon: Icon(Icons.add),
-////                    color: Colors.black,
-//
-////                      onPressed: ()  async {
-////                        await _showPopupMenu();
-//////                     List<FileSystemEntity> newl = await Navigator.push(context, MaterialPageRoute(builder: (context) => Boom_Menu(files,foodName,context)));
-//////                      child:getboomMenu();
-//////                      _updatePdflist();
-////                    } //add options to pdf
-////                    ),
-//              ),
-//              ],
             )
 
         )
