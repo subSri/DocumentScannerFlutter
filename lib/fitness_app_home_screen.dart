@@ -81,7 +81,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (int index) {
-            if (index == 0 || index == 2) {
+            if (index == 0 || index == 3) {
               animationController.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -92,18 +92,18 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                 });
               });
             }
-//            else if (index == 1 || index == 3) {
-//              animationController.reverse().then<dynamic>((data) {
-//                if (!mounted) {
-//                  return;
-//                }
-//                setState(() {
-//                  tabBody =
-//                      PdfPreview(animationController: animationController
-//                      );
-//                });
-//              });
-//            }
+            else if (index == 1 || index == 3) {
+              animationController.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody =
+                      PdfPreview(animationController: animationController
+                      );
+                });
+              });
+            }
           },
         ),
       ],
