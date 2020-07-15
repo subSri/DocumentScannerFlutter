@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PageWidget extends StatelessWidget {
@@ -13,12 +14,13 @@ class PageWidget extends StatelessWidget {
     var file = File.fromUri(path);
     var bytes = file.readAsBytesSync();
     //
-    // var image = Image.file(
-    //    file,
-    //   height: double.infinity,
-    //    width: double.infinity,
-    // );
-    Image image = Image.memory(bytes);
+     var image = Image.file(
+        file,
+        height: 100,//double.infinity,
+        width: 120,//double.infinity,
+       fit: BoxFit.fill,
+     );
+    //Image image = Image.memory(bytes);
 //    return Image(
 //      image : NetworkImage(image.toString())
 //    );

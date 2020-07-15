@@ -111,7 +111,7 @@ class _AreaListViewState extends State<AreaListView>
                     crossAxisCount: 3,
                     mainAxisSpacing: 18.0,
                     crossAxisSpacing: 18.0,
-                    childAspectRatio: 0.7,
+                    childAspectRatio: 0.89,
                   ),
                 ),
               ),
