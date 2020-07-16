@@ -27,6 +27,7 @@ import 'pages_repository.dart';
 import 'ui/menu_items.dart';
 import 'ui/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class FitnessAppHomeScreen extends StatefulWidget {
   @override
@@ -37,17 +38,17 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     with TickerProviderStateMixin {
   AnimationController animationController;
   PageRepository pR;
-  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
+//  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
 
   Widget tabBody = Container(
     color: FintnessAppTheme.background,
   );
   @override
   void initState() {
-    tabIconsList.forEach((TabIconData tab) {
-      tab.isSelected = false;
-    });
-    tabIconsList[0].isSelected = true;
+ //   tabIconsList.forEach((TabIconData tab) {
+ //     tab.isSelected = false;
+//    });
+ //   tabIconsList[0].isSelected = true;
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
@@ -60,12 +61,46 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     animationController.dispose();
     super.dispose();
   }
+  int _page = 0;
+  GlobalKey _bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: FintnessAppTheme.background,
       child: Scaffold(
+       /* bottomNavigationBar: CurvedNavigationBar(
+          key: _bottomNavigationKey,
+          index: 2,
+          height: 50.0,
+          items: <Widget>[
+            Icon(Icons.home, size: 30),
+            Icon(Icons.list, size: 30),
+            Icon(Icons.book, size: 30),
+            Icon(Icons.call_split, size: 30),
+            Icon(Icons.perm_identity, size: 30),
+          ],
+          color: Colors.white,
+          buttonBackgroundColor: Colors.white,
+          backgroundColor: Colors.blueAccent,
+          animationCurve: Curves.easeInOut,
+          animationDuration: Duration(milliseconds: 600),
+          onTap: (index) {
+            if (index==2)
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
+                PdfPreview(animationController: animationController
+                );})
+              );
+            if (index==0)
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
+                MyDiaryScreen(animationController: animationController
+                );})
+              );
+            setState(() {
+              _page = index;
+            });
+          },
+        ), */
         backgroundColor: Colors.transparent,
         body: FutureBuilder<bool>(
           future: getData(),
@@ -76,7 +111,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
               return Stack(
                 children: <Widget>[
                   tabBody,
-                  bottomBar(),
+                  //bottomBar(),
                 ],
               );
             }
@@ -91,7 +126,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     return true;
   }
 
-
+/*
   Widget bottomBar() {
     return Column(
       children: <Widget>[
@@ -151,5 +186,5 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
         ),
       ],
     );
-  }
+  } */
 }
