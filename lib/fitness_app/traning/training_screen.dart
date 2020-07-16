@@ -28,6 +28,7 @@ class TrainingScreen extends StatefulWidget {
   final PageRepository pR;
   final AnimationController animationController;
   @override
+
   _TrainingScreenState createState() => _TrainingScreenState(pR);
 }
 
@@ -35,8 +36,15 @@ class _TrainingScreenState extends State<TrainingScreen>
     with TickerProviderStateMixin {
   PageRepository pR;
   _TrainingScreenState(this.pR){
-    this.page = this.pR.pages;
+    if (pR!=null) {
+      this.page = this.pR.pages;
+    }
   }
+//
+//  _FitnessAppHomeScreenState().setState(){
+//    _FitnessAppHomeScreenState().pR = this.pR;
+//  }
+
 
   Animation<double> topBarAnimation;
   List<c.Page> page ;

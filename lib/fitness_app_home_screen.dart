@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 import 'package:flutter/material.dart';
 import 'fitness_app/fintness_app_theme.dart';
@@ -7,14 +8,20 @@ import 'pages_repository.dart';
 import 'pdfviewcurved/detailsPage.dart';
 
 class FitnessAppHomeScreen extends StatefulWidget {
+  final PageRepository pR;
+
+  FitnessAppHomeScreen(this.pR);
+
   @override
-  _FitnessAppHomeScreenState createState() => _FitnessAppHomeScreenState();
+  _FitnessAppHomeScreenState createState() => _FitnessAppHomeScreenState(pR);
 }
 
 class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     with TickerProviderStateMixin {
-  AnimationController animationController;
+
+  _FitnessAppHomeScreenState(this.pR);
   PageRepository pR;
+  AnimationController animationController;
 //  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
 
   Widget tabBody = Container(
@@ -29,7 +36,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = MyDiaryScreen(animationController: animationController);
+    tabBody = MyDiaryScreen(pR:pR,animationController: animationController);
     super.initState();
   }
 
@@ -48,7 +55,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
       child: Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
-          index: 2,
+          index: 0,
           height: 50.0,
           items: <Widget>[
             Icon(Icons.home, size: 30),
@@ -63,16 +70,33 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {
-            if (index==2)
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
-                PdfPreview(animationController: animationController
-                );})
+            if (index==0){
+              setState(() {
+                tabBody =  MyDiaryScreen(pR:pR,animationController: animationController);
+              });
+            }
+            if (index==2) {
+              Navigator.pop(context);
+
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return
+                      PdfPreview(animationController: animationController
+                      );
+                  })
               );
-            if (index==0)
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
-                MyDiaryScreen(animationController: animationController
-                );})
+            }
+            if (index==1) {
+              Navigator.pop(context);
+             Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return
+                      TrainingScreen(
+                          pR: pR, animationController: animationController
+                      );
+                  })
               );
+            }
             setState(() {
               _page = index;
             });

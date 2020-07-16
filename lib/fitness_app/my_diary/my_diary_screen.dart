@@ -1,5 +1,6 @@
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 
 import '../ui_view/glass_view.dart';
 import '../ui_view/mediterranesn_diet_view.dart';
@@ -13,15 +14,21 @@ import 'package:scanbot_sdk_example_flutter/fitness_app/my_diary/meals_list_view
 
 
 class MyDiaryScreen extends StatefulWidget {
-  const MyDiaryScreen({Key key, this.animationController}) : super(key: key);
+  final PageRepository pR;
+
+  const MyDiaryScreen({Key key,this.pR, this.animationController}) : super(key: key);
 
   final AnimationController animationController;
   @override
-  _MyDiaryScreenState createState() => _MyDiaryScreenState();
+  _MyDiaryScreenState createState() => _MyDiaryScreenState(pR);
 }
 
 class _MyDiaryScreenState extends State<MyDiaryScreen>
     with TickerProviderStateMixin {
+  final PageRepository pR;
+
+
+  _MyDiaryScreenState(this.pR);
   AnimationController animationController;
   Animation<double> topBarAnimation;
 
@@ -104,8 +111,10 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
 
     listViews.add(
       MealsListView(
+        pR:pR,
         mainScreenAnimation: Tween<double>(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
+
                 parent: widget.animationController,
                 curve: Interval((1 / count) * 3, 1.0,
                     curve: Curves.fastOutSlowIn))),

@@ -1,12 +1,9 @@
-import 'dart:io';
-
 
 import 'package:flutter/material.dart';
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 import 'package:scanbot_sdk_example_flutter/ui/pages_widget.dart';
 import 'package:scanbot_sdk/common_data.dart' as c;
 import '../fintness_app_theme.dart';
-import '../../ui/preview_document_widget.dart';
 import '../../ui/operations_page_widget.dart';
 
 class AreaListView extends StatefulWidget {
@@ -26,10 +23,11 @@ class _AreaListViewState extends State<AreaListView>
     with TickerProviderStateMixin {
   List<c.Page> areaListData;
   _AreaListViewState(this.pR){
+    if (pR!=null){
     this.areaListData = this.pR.pages;
-    print("AreaLsit");
+    print("AreaList");
     print(areaListData.length);
-  }
+  }}
   PageRepository pR;
 
   AnimationController animationController;
@@ -64,63 +62,128 @@ class _AreaListViewState extends State<AreaListView>
 //    setState(() {
 //      this.context = context;
 //    });
-    return AnimatedBuilder(
-      animation: widget.mainScreenAnimationController,
-      builder: (BuildContext context, Widget child) {
-        return FadeTransition(
-          opacity: widget.mainScreenAnimation,
-          child: Transform(
-            transform: Matrix4.translationValues(
-                0.0, 30 * (1.0 - widget.mainScreenAnimation.value), 0.0),
-            child: AspectRatio(
-              aspectRatio: 0.8,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8),
-                child: GridView(
+    if (pR != null && pR.pages.length!=0) {
+      return AnimatedBuilder(
+        animation: widget.mainScreenAnimationController,
+        builder: (BuildContext context, Widget child) {
+          return FadeTransition(
+            opacity: widget.mainScreenAnimation,
+            child: Transform(
+              transform: Matrix4.translationValues(
+                  0.0, 30 * (1.0 - widget.mainScreenAnimation.value), 0.0),
+              child: AspectRatio(
+                aspectRatio: 0.8,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8),
+                  child: GridView(
 
-                  padding: const EdgeInsets.only(
-                      left: 6, right: 6, top: 6, bottom: 6),
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  children: List<Widget>.generate(
-                    areaListData.length,
-                    (int index) {
-                      final int count = areaListData.length;
+                    padding: const EdgeInsets.only(
+                        left: 6, right: 6, top: 6, bottom: 6),
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    children: List<Widget>.generate(
+                      areaListData.length,
+                          (int index) {
+                        final int count = areaListData.length;
 //                      print('Count is : $count');
-                      final Animation<double> animation =
-                          Tween<double>(begin: 0.0, end: 1.0).animate(
-                        CurvedAnimation(
-                          parent: animationController,
-                          curve: Interval((1 / count) * index, 1.0,
-                              curve: Curves.fastOutSlowIn),
-                        ),
-                      );
-                      animationController.forward();
-                      return AreaView(
-                        context: context,
-                        pR: pR,
-                        index : index,
-                        alist: areaListData,
-                        uri: areaListData[index].documentPreviewImageFileUri,
-                        animation: animation,
-                        animationController: animationController,
-                      );
-                    },
-                  ),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 18.0,
-                    crossAxisSpacing: 18.0,
-                    childAspectRatio: 0.75,
+                        final Animation<double> animation =
+                        Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                            parent: animationController,
+                            curve: Interval((1 / count) * index, 1.0,
+                                curve: Curves.fastOutSlowIn),
+                          ),
+                        );
+                        animationController.forward();
+                        return AreaView(
+                          context: context,
+                          pR: pR,
+                          index: index,
+                          alist: areaListData,
+                          uri: areaListData[index].documentPreviewImageFileUri,
+                          animation: animation,
+                          animationController: animationController,
+                        );
+                      },
+                    ),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 18.0,
+                      crossAxisSpacing: 18.0,
+                      childAspectRatio: 0.75,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+    }
+
+  else{
+      return AnimatedBuilder(
+        animation: widget.mainScreenAnimationController,
+        builder: (BuildContext context, Widget child) {
+          return FadeTransition(
+            opacity: widget.mainScreenAnimation,
+            child: Transform(
+              transform: Matrix4.translationValues(
+                  0.0, 30 * (1.0 - widget.mainScreenAnimation.value), 0.0),
+              child: AspectRatio(
+                aspectRatio: 0.8,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0, right: 8),
+                    child:Center(
+                      child:Text("You havent Scanned/Imported any Images yet")
+                    )
+//                  child: GridView(
+//
+//                    padding: const EdgeInsets.only(
+//                        left: 6, right: 6, top: 6, bottom: 6),
+//                    physics: const BouncingScrollPhysics(),
+//                    scrollDirection: Axis.vertical,
+//                    children: List<Widget>.generate(
+//                      areaListData.length,
+//                          (int index) {
+//                        final int count = areaListData.length;
+////                      print('Count is : $count');
+//                        final Animation<double> animation =
+//                        Tween<double>(begin: 0.0, end: 1.0).animate(
+//                          CurvedAnimation(
+//                            parent: animationController,
+//                            curve: Interval((1 / count) * index, 1.0,
+//                                curve: Curves.fastOutSlowIn),
+//                          ),
+//                        );
+//                        animationController.forward();
+//                        return AreaView(
+//                          context: context,
+//                          pR: pR,
+//                          index: index,
+//                          alist: areaListData,
+//                          uri: areaListData[index].documentPreviewImageFileUri,
+//                          animation: animation,
+//                          animationController: animationController,
+//                        );
+//                      },
+//                    ),
+//                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//                      crossAxisCount: 2,
+//                      mainAxisSpacing: 18.0,
+//                      crossAxisSpacing: 18.0,
+//                      childAspectRatio: 0.75,
+//                    ),
+//                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    }
   }
+
 
 
 }

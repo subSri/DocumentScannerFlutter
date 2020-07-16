@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:downloads_path_provider/downloads_path_provider.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
+import 'package:scanbot_sdk_example_flutter/fitness_app_home_screen.dart';
+import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 
 import '../fitness_app/ui_view/title_view.dart';
 import 'package:flutter/material.dart';
@@ -11,18 +15,26 @@ import 'package:permission_handler/permission_handler.dart';
 
 
 class PdfPreview extends StatefulWidget {
+  final PageRepository pR;
 
 
 
-  const PdfPreview({Key key, this.animationController}) : super(key: key);
+
+  const PdfPreview({Key key,this.pR, this.animationController}) : super(key: key);
 //  final PageRepository pR;
   final AnimationController animationController;
   @override
-  _PdfPreviewState createState() => _PdfPreviewState();
+  _PdfPreviewState createState() => _PdfPreviewState(pR);
 }
 
 class _PdfPreviewState extends State<PdfPreview>
     with TickerProviderStateMixin {
+  int _page = 0;
+
+  PageRepository pR;
+  _PdfPreviewState(this.pR);
+  GlobalKey _bottomNavigationKey = GlobalKey();
+
 
   Future<Directory> getDemoStorageBaseDirectory() async {
     Directory storageDirectory;
@@ -72,10 +84,7 @@ Future<void> testStatus() async{
     });
   }
 }
-  _PdfPreviewState(){
-//    testStatus();
 
-  }
 //    this._files = dir.listSync(recursive: false, followLinks: false);
 
 
@@ -173,6 +182,57 @@ Future<void> testStatus() async{
     return Container(
       color: FintnessAppTheme.background,
       child: Scaffold(
+        bottomNavigationBar:CurvedNavigationBar(
+            key: _bottomNavigationKey,
+            index: 2,
+            height: 50.0,
+            items: <Widget>[
+              Icon(Icons.home, size: 30),
+              Icon(Icons.list, size: 30),
+              Icon(Icons.book, size: 30),
+              Icon(Icons.call_split, size: 30),
+              Icon(Icons.perm_identity, size: 30),
+            ],
+            color: Colors.white,
+            buttonBackgroundColor: Colors.white,
+            backgroundColor: Colors.blueAccent,
+            animationCurve: Curves.easeInOut,
+            animationDuration: Duration(milliseconds: 600),
+            onTap: (index) {
+              if (index==0){
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
+                  FitnessAppHomeScreen(pR);})
+                );
+              }
+              if (index==2) {
+                Navigator.pop(context);
+
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return
+                        PdfPreview(
+                            animationController: widget.animationController
+                        );
+                    })
+                );
+              }
+              if (index==1) {
+                Navigator.pop(context);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return
+                        TrainingScreen(
+                            pR: pR, animationController: animationController
+                        );
+                    })
+                );
+              }
+              setState(() {
+                _page = index;
+              });
+            },
+          ),
         backgroundColor: Colors.transparent,
         body:
 

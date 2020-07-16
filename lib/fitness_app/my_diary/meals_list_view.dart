@@ -29,7 +29,7 @@ import '../../ui/utils.dart';
 
 import 'package:image_picker/image_picker.dart';
 
-PageRepository _pageRepository = PageRepository();
+
 const SCANBOT_SDK_LICENSE_KEY = "cPJaWtvXEJH/saeDetb6zHk8Uo72+h" +
     "Wxv1lHI1VxlnZK6vgtWD3M7n73jIjn" +
     "hVbTlGpksJ+uhY/xgkZ61cgQONQ/VJ" +
@@ -86,9 +86,11 @@ Future<Directory> getDemoStorageBaseDirectory() async {
 
 
 class MealsListView extends StatefulWidget {
+  final PageRepository pR;
+
 
   const MealsListView(
-      {Key key, this.mainScreenAnimationController, this.mainScreenAnimation})
+      {Key key,this.pR, this.mainScreenAnimationController, this.mainScreenAnimation})
       : super(key: key);
 
   final AnimationController mainScreenAnimationController;
@@ -97,13 +99,14 @@ class MealsListView extends StatefulWidget {
   @override
   _MealsListViewState createState() {
     initScanbotSdk();
-    return _MealsListViewState();
+    return _MealsListViewState(pR);
   }
 }
 
 class _MealsListViewState extends State<MealsListView>
     with TickerProviderStateMixin {
-
+  PageRepository pR;
+  _MealsListViewState(this.pR);
 
   AnimationController animationController;
   List<MealsListData> mealsListData = MealsListData.tabIconsList;
@@ -157,7 +160,7 @@ class _MealsListViewState extends State<MealsListView>
                   animationController.forward();
 
                   return MealsView(
-                    pR :_pageRepository,
+                    pR :pR,
                     context:context,
                     mealsListData: mealsListData[index],
                     animation: animation,
@@ -173,17 +176,18 @@ class _MealsListViewState extends State<MealsListView>
   }
 }
 
+// ignore: must_be_immutable
 class MealsView extends StatelessWidget {
 
 
 
-  const MealsView(
+   MealsView(
       {Key key,this.pR, this.context, this.mealsListData, this.animationController, this.animation})
       : super(key: key);
 
   final MealsListData mealsListData;
   final BuildContext context;
-  final PageRepository pR;
+   PageRepository pR;
   final AnimationController animationController;
   final Animation<dynamic> animation;
 
@@ -275,6 +279,7 @@ class MealsView extends StatelessWidget {
     if (isOperationSuccessful(result)) {
       pR.addPages(result.pages);
       gotoImagesView();
+
     }
   }
 
@@ -352,7 +357,7 @@ class MealsView extends StatelessWidget {
     MrzScanningResult result;
     try {
       var config = MrzScannerConfiguration(
-        topBarBackgroundColor: Colors.blue,
+        topBarBackgroundColor: Colors.black,
         // ...
       );
       result = await ScanbotSdkUi.startMrzScanner(config);
@@ -373,11 +378,12 @@ class MealsView extends StatelessWidget {
   }
 
   gotoImagesView() async {
+    print("In goto");
     imageCache.clear();
-    return await Navigator.of(context).push(
+     await Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => TrainingScreen(
         pR: pR,
-        animationController:animationController ,
+        animationController: animationController ,
       )),
     );
   }
@@ -395,16 +401,16 @@ class MealsView extends StatelessWidget {
                 child:  new GestureDetector(
                 onTap: () {
                 if (mealsListData.titleTxt == "Document"){
-                return startDocumentScanning();
+                 startDocumentScanning();
                 }
                 else if(mealsListData.titleTxt == "Barcode"){
-                return startBarcodeScanner();
+                 startBarcodeScanner();
                 }
                 else if (mealsListData.titleTxt == "QR Code"){
-                return startQRScanner();
+                 startQRScanner();
                 }
                 else {
-                return startMRZScanner();
+                 startMRZScanner();
                 }
                 },
             child: SizedBox(
