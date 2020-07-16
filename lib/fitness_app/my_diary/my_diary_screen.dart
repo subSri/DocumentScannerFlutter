@@ -1,40 +1,16 @@
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
 import '../ui_view/glass_view.dart';
 import '../ui_view/mediterranesn_diet_view.dart';
 import '../ui_view/title_view.dart';
 import '../fintness_app_theme.dart';
 import 'meals_list_view.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 import 'package:scanbot_sdk_example_flutter/pdfviewcurved/detailsPage.dart';
-import 'dart:convert';
-import 'dart:io';
-import 'package:scanbot_sdk_example_flutter/fitness_app/models/tabIcon_data.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/bottom_navigation_view/bottom_bar_view.dart';
 import 'package:scanbot_sdk_example_flutter/fitness_app/fintness_app_theme.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/my_diary/my_diary_screen.dart';
-import 'package:scanbot_sdk_example_flutter/ui/preview_document_widget.dart';
-import 'package:scanbot_sdk_example_flutter/ui/progress_dialog.dart';
-import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:scanbot_sdk/barcode_scanning_data.dart';
-import 'package:scanbot_sdk/common_data.dart';
-import 'package:scanbot_sdk/document_scan_data.dart';
-import 'package:scanbot_sdk/ehic_scanning_data.dart';
-import 'package:scanbot_sdk/mrz_scanning_data.dart';
-import 'package:scanbot_sdk/scanbot_sdk.dart';
-import 'package:scanbot_sdk/scanbot_sdk_models.dart';
-import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
 import 'package:scanbot_sdk_example_flutter/fitness_app/my_diary/meals_list_view.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app_home_screen.dart';
-import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
-import 'package:scanbot_sdk_example_flutter/ui/menu_items.dart';
-import 'package:scanbot_sdk_example_flutter/ui/utils.dart';
-import 'package:flutter/material.dart';
+
 
 class MyDiaryScreen extends StatefulWidget {
   const MyDiaryScreen({Key key, this.animationController}) : super(key: key);
@@ -163,38 +139,38 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
     return Container(
       color: FintnessAppTheme.background,
       child: Scaffold(
-        bottomNavigationBar: CurvedNavigationBar(
-          key: _bottomNavigationKey,
-          index: 2,
-          height: 50.0,
-          items: <Widget>[
-            Icon(Icons.home, size: 30),
-            Icon(Icons.list, size: 30),
-            Icon(Icons.book, size: 30),
-            Icon(Icons.call_split, size: 30),
-            Icon(Icons.perm_identity, size: 30),
-          ],
-          color: Colors.white,
-          buttonBackgroundColor: Colors.white,
-          backgroundColor: Colors.blueAccent,
-          animationCurve: Curves.easeInOut,
-          animationDuration: Duration(milliseconds: 600),
-          onTap: (index) {
-            if (index==2)
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
-                PdfPreview(animationController: animationController
-                );})
-              );
-            if (index==0)
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
-                MyDiaryScreen(animationController: animationController
-                );})
-              );
-            setState(() {
-              _page = index;
-            });
-          },
-        ),
+//        bottomNavigationBar: CurvedNavigationBar(
+//          key: _bottomNavigationKey,
+//          index: 2,
+//          height: 50.0,
+//          items: <Widget>[
+//            Icon(Icons.home, size: 30),
+//            Icon(Icons.list, size: 30),
+//            Icon(Icons.book, size: 30),
+//            Icon(Icons.call_split, size: 30),
+//            Icon(Icons.perm_identity, size: 30),
+//          ],
+//          color: Colors.white,
+//          buttonBackgroundColor: Colors.white,
+//          backgroundColor: Colors.blueAccent,
+//          animationCurve: Curves.easeInOut,
+//          animationDuration: Duration(milliseconds: 600),
+//          onTap: (index) {
+//            if (index==2)
+//              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
+//                PdfPreview(animationController: animationController
+//                );})
+//              );
+//            if (index==0)
+//              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
+//                MyDiaryScreen(animationController: animationController
+//                );})
+//              );
+//            setState(() {
+//              _page = index;
+//            });
+//          },
+//        ),
         backgroundColor: Colors.transparent,
         body: Stack(
           children: <Widget>[

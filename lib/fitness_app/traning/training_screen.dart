@@ -1,4 +1,7 @@
+import 'package:flutter/rendering.dart';
+import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:scanbot_sdk/common_data.dart';
 import 'package:scanbot_sdk/create_tiff_data.dart';
 import 'package:scanbot_sdk/document_scan_data.dart';
 import 'package:scanbot_sdk/ocr_data.dart';
@@ -6,17 +9,15 @@ import 'package:scanbot_sdk/render_pdf_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
+import 'package:scanbot_sdk_example_flutter/pdfviewcurved/main.dart';
 import 'package:scanbot_sdk_example_flutter/ui/filter_all_pages_widget.dart';
 import 'package:scanbot_sdk_example_flutter/ui/progress_dialog.dart';
 import 'package:scanbot_sdk_example_flutter/ui/utils.dart';
 
 import '../ui_view/area_list_view.dart';
 import 'package:scanbot_sdk/common_data.dart' as c;
-import '../ui_view/running_view.dart';
 import '../ui_view/title_view.dart';
-import '../ui_view/workout_view.dart';
 import 'package:flutter/material.dart';
-import '../my_diary/meals_list_view.dart';
 import '../fintness_app_theme.dart';
 
 
@@ -32,10 +33,10 @@ class TrainingScreen extends StatefulWidget {
 
 class _TrainingScreenState extends State<TrainingScreen>
     with TickerProviderStateMixin {
-   PageRepository pR;
-   _TrainingScreenState(this.pR){
-     this.page = pR.pages;
-   }
+  PageRepository pR;
+  _TrainingScreenState(this.pR){
+    this.page = this.pR.pages;
+  }
 
   Animation<double> topBarAnimation;
   List<c.Page> page ;
@@ -99,11 +100,11 @@ class _TrainingScreenState extends State<TrainingScreen>
         animation: Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
             parent: widget.animationController,
             curve:
-                Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
+            Interval((1 / count) * 4, 1.0, curve: Curves.fastOutSlowIn))),
         animationController: widget.animationController,
       ),
     );
-
+    print("Entering Area lsit");
     listViews.add(
       AreaListView(
         pR:pR,
@@ -127,14 +128,14 @@ class _TrainingScreenState extends State<TrainingScreen>
     return Container(
       color: FintnessAppTheme.background,
       child: Scaffold(
-//        bottomNavigationBar: getBottomBar(),
+        floatingActionButton: getBoomMenu(),
         backgroundColor: Colors.transparent,
         body:
 
-            Stack(
+        Stack(
           children: <Widget>[
-              getMainListViewUI(),
-              getAppBarUI(),
+            getMainListViewUI(),
+            getAppBarUI(),
 
 //            SizedBox(
 //              height: MediaQuery.of(context).padding.bottom,
@@ -153,7 +154,7 @@ class _TrainingScreenState extends State<TrainingScreen>
 //          ),
 
 
-    ),
+      ),
     );
   }
 
@@ -254,154 +255,76 @@ class _TrainingScreenState extends State<TrainingScreen>
     );
   }
 
-  Widget getBottomBar(){
-    return BottomAppBar(
-      child: new Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          FlatButton(
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.add_circle),
-                Container(width: 4),
-                Text('Add',
-                    style: TextStyle(inherit: true, color: Colors.black)),
-              ],
-            ),
-            onPressed: () {
-              _addPageModalBottomSheet(context);
-            },
-          ),
-          FlatButton(
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.more_vert),
-                Container(width: 4),
-                Text('More',
-                    style: TextStyle(inherit: true, color: Colors.black)),
-              ],
-            ),
-            onPressed: () {
-              _settingModalBottomSheet(context);
-            },
-          ),
-          FlatButton(
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.delete, color: Colors.red),
-                Container(width: 4),
-                Text('Delete All',
-                    style: TextStyle(inherit: true, color: Colors.red)),
-              ],
-            ),
-            onPressed: () {
-              showCleanupStorageDialog();
-            },
-          ),
-        ],
-      ),
-    );
-  }
-  void _settingModalBottomSheet(context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return Container(
-            child: new Wrap(
-              children: <Widget>[
-                ListTile(
-                  leading: new Icon(Icons.text_fields),
-                  title: new Text('Perform OCR'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    performOcr();
-                  },
-                ),
-                ListTile(
-                  leading: new Icon(Icons.picture_as_pdf),
-                  title: new Text('Save as PDF'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    createPdf();
-                  },
-                ),
-                ListTile(
-                  leading: new Icon(Icons.picture_as_pdf),
-                  title: new Text('Save as PDF with OCR'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    createOcrPdf();
-                  },
-                ),
-                ListTile(
-                  leading: new Icon(Icons.image),
-                  title: new Text('Safe as TIFF'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    createTiff(false);
-                  },
-                ),
-                ListTile(
-                  leading: new Icon(Icons.image),
-                  title: new Text('Save as TIFF 1-bit encoded'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    createTiff(true);
-                  },
-                ),
-                ListTile(
-                  leading: new Icon(Icons.image),
-                  title: new Text('Apply Image Filter on ALL pages'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    filterAllPages();
-                  },
-                ),
-                ListTile(
-                  leading: new Icon(Icons.close),
-                  title: new Text('Cancel'),
-                  onTap: () => Navigator.pop(context),
-                ),
-              ],
-            ),
-          );
-        });
-  }
+  Widget getBoomMenu() {
+     return  BoomMenu(
+         animatedIcon: AnimatedIcons.menu_close,
+         animatedIconTheme: IconThemeData(size: 22.0),
+         //child: Icon(Icons.add),
+         onOpen: () => print('OPENING DIAL'),
+         onClose: () => print('DIAL CLOSED'),
+//         scrollVisible: FontAwesomeIcons.scroll,
+         overlayColor: Colors.black,
+         overlayOpacity: 0.7,
+         children: [
+           MenuItem(
+             child: Icon(Icons.picture_as_pdf, color: Colors.black),
+             title: "Create PDF",
+             titleColor: Colors.white,
+             subtitle: "Convert all scans into PDF",
+             subTitleColor: Colors.white,
+             backgroundColor: Colors.deepOrange,
+             onTap: () => createPdf(),
+           ),
+           MenuItem(
+             child: Icon(Icons.image, color: Colors.black),
+             title: "Import Images",
+             titleColor: Colors.white,
+             subtitle: "Add images from your files",
+             subTitleColor: Colors.white,
+             backgroundColor: Colors.green,
+             onTap: () {
+//               Navigator.pop(context);
+               importImage();
 
-  void _addPageModalBottomSheet(context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return Container(
-            child: new Wrap(
-              children: <Widget>[
-                ListTile(
-                  leading: new Icon(Icons.scanner),
-                  title: new Text('Scan Page'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    startDocumentScanning();
-                  },
-                ),
-                ListTile(
-                  leading: new Icon(Icons.photo_size_select_actual),
-                  title: new Text('Import Page'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    importImage();
-                  },
-                ),
-                ListTile(
-                  leading: new Icon(Icons.close),
-                  title: new Text('Cancel'),
-                  onTap: () => Navigator.pop(context),
-                ),
-              ],
-            ),
-          );
-        });
-  }
+
+             },
+           ),
+           MenuItem(
+             child: Icon(Icons.pages, color: Colors.black),
+             title: "Add Page",
+             titleColor: Colors.white,
+             subtitle: "Scan more in the document",
+             subTitleColor: Colors.white,
+             backgroundColor: Colors.blue,
+             onTap: () {
+//               Navigator.pop(context);
+               startDocumentScanning();
+//               _updatePagesList();
+             }
+           ),
+
+           MenuItem(
+               child: Icon(Icons.delete, color: Colors.black),
+               title: "Delete All",
+               titleColor: Colors.white,
+               subtitle: "Clear all scanned images",
+               subTitleColor: Colors.white,
+               backgroundColor: Colors.red,
+               onTap: () {
+//               Navigator.pop(context);
+                 pR.clearPages();
+                Navigator.pop(context);
+               gotoImagesView();
+               }
+           ),
+
+         ],
+       );
+//     );
+   }
+
+
+
 
   startDocumentScanning() async {
     if (!await checkLicenseStatus(context)) { return; }
@@ -409,27 +332,65 @@ class _TrainingScreenState extends State<TrainingScreen>
     DocumentScanningResult result;
     try {
       var config = DocumentScannerConfiguration(
-        orientationLockMode: c.CameraOrientationMode.PORTRAIT,
-        cameraPreviewMode: c.CameraPreviewMode.FIT_IN,
+
+        bottomBarBackgroundColor: Colors.black,
+//        topBarBackgroundColor:Colors.white,
         ignoreBadAspectRatio: true,
-        multiPageEnabled: false,
-        multiPageButtonHidden: true,
+        multiPageEnabled: true,
+        shutterButtonAutoOuterColor:Colors.white,
+        shutterButtonAutoInnerColor:Colors.black,
+        shutterButtonManualInnerColor:Colors.black,
+        shutterButtonManualOuterColor:Colors.white,
+        polygonColor:Colors.lightGreen,
+        polygonColorOK:Colors.lightGreen,
+        multiPageButtonHidden:true,
+
+        //maxNumberOfPages: 3,
+        //flashEnabled: true,
+        //autoSnappingSensitivity: 0.7,
+        cameraPreviewMode: CameraPreviewMode.FIT_IN,
+        orientationLockMode: CameraOrientationMode.PORTRAIT,
+        //documentImageSizeLimit: Size(2000, 3000),
+        cancelButtonTitle: "Cancel",
+
+        pageCounterButtonTitle: "%d",
+        textHintOK: "Perfect, don't move...",
+        //textHintNothingDetected: "Nothing",
+        // ...
       );
       result = await ScanbotSdkUi.startDocumentScanner(config);
     } catch (e) {
       print(e);
     }
+
     if (isOperationSuccessful(result)) {
-      pR.addPages(result.pages);
-      _updatePagesList();
+      this.pR.addPages(result.pages);
+      Navigator.pop(context);
+      gotoImagesView();
     }
+  }
+
+  gotoImagesView() async {
+    imageCache.clear();
+    return await Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => TrainingScreen(
+        pR: pR,
+        animationController:widget.animationController ,
+      )),
+    );
   }
   void _updatePagesList() {
     imageCache.clear();
     Future.delayed(Duration(microseconds: 500)).then((val) {
       setState(() {
         this.page = pR.pages;
+        print("Pages count in setState");
+        print(page.length);
       });
+    });
+
+    setState(() {
+      this.page = pR.pages;
     });
   }
 
@@ -511,7 +472,13 @@ class _TrainingScreenState extends State<TrainingScreen>
   importImage() async {
     try {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-      createPage(image.uri);
+      print("Calling createImage");
+      await createPage(image.uri);
+      print("Pages count after return");
+      print(pR.pages.length);
+      Navigator.pop(context);
+      gotoImagesView();
+//      _updatePagesList();
     } catch (e) {}
   }
 
@@ -522,11 +489,13 @@ class _TrainingScreenState extends State<TrainingScreen>
     dialog.style(message: "Processing ...");
     dialog.show();
     try {
-      var page = await ScanbotSdk.createPage(uri, false);
-      page = await ScanbotSdk.detectDocument(page);
+      print("Inside CrreatePage");
+      var p = await ScanbotSdk.createPage(uri, false);
+      p = await ScanbotSdk.detectDocument(p);
       dialog.hide();
-      this.pR.addPage(page);
-      _updatePagesList();
+      this.pR.addPage(p);
+      print("Pages count");
+      print(pR.pages.length);
     } catch (e) {
       print(e);
       dialog.hide();
@@ -615,3 +584,12 @@ class _TrainingScreenState extends State<TrainingScreen>
     return false;
   }
 }
+
+
+
+
+
+
+
+
+

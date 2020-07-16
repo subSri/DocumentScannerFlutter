@@ -132,7 +132,7 @@ class AreaView extends StatelessWidget {
 
    List<c.Page> alist;
 
-   PageRepository pR;
+    PageRepository pR;
 
   final BuildContext context;
 
@@ -246,19 +246,19 @@ class AreaView extends StatelessWidget {
 
       print(pR.pages.length);
 //    return;
-  PageRepository newv;
-     newv = await Navigator.push(
+
+      await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => PageOperations(page, pR)),
-    ) as PageRepository;
+    );
 //    this.pR = await Navigator.of(this.context).push(
 //      MaterialPageRoute(
 //          builder: (context) => ),
 //    );
     // ignore: invalid_use_of_protected_member
     print("Dance");
-    print(newv.pages.length);
-    _AreaListViewState(newv)._updatePagesList();
+    print(pR.pages.length);
+    _AreaListViewState(pR)._updatePagesList();
 
   }
 

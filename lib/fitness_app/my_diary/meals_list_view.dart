@@ -65,25 +65,8 @@ initScanbotSdk() async {
 }
 
 
+
 Future<Directory> getDemoStorageBaseDirectory() async {
-  // !! Please note !!
-  // It is strongly recommended to use the default (secure) storage location of the Scanbot SDK.
-  // However, for demo purposes we overwrite the "storageBaseDirectory" of the Scanbot SDK by a custom storage directory.
-  //
-  // On Android we use the "ExternalStorageDirectory" which is a public(!) folder.
-  // All image files and export files (PDF, TIFF, etc) created by the Scanbot SDK in this demo app will be stored
-  // in this public storage directory and will be accessible for every(!) app having external storage permissions!
-  // Again, this is only for demo purposes, which allows us to easily fetch and check the generated files
-  // via Android "adb" CLI tools, Android File Transfer app, Android Studio, etc.
-  //
-  // On iOS we use the "ApplicationDocumentsDirectory" which is accessible via iTunes file sharing.
-  //
-  // For more details about the storage system of the Scanbot SDK Flutter Plugin please see our docs:
-  // - https://scanbotsdk.github.io/documentation/flutter/
-  //
-  // For more details about the file system on Android and iOS we also recommend to check out:
-  // - https://developer.android.com/guide/topics/data/data-storage
-  // - https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
 
   Directory storageDirectory;
   if (Platform.isAndroid) {
@@ -97,7 +80,7 @@ Future<Directory> getDemoStorageBaseDirectory() async {
     throw("Unsupported platform");
   }
 
-  //return "${storageDirectory.path}/DocScan";
+  return storageDirectory;
 }
 
 
