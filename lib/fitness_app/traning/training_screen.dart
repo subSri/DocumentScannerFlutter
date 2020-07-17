@@ -184,7 +184,7 @@ class _TrainingScreenState extends State<TrainingScreen>
             itemCount: listViews.length,
             scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {
-              widget.animationController.forward();
+//              widget.animationController.forward();
               return listViews[index];
             },
           );
@@ -264,72 +264,72 @@ class _TrainingScreenState extends State<TrainingScreen>
   }
 
   Widget getBoomMenu() {
-     return  BoomMenu(
-         animatedIcon: AnimatedIcons.menu_close,
-         animatedIconTheme: IconThemeData(size: 22.0),
-         //child: Icon(Icons.add),
-         onOpen: () => print('OPENING DIAL'),
-         onClose: () => print('DIAL CLOSED'),
+    return  BoomMenu(
+      animatedIcon: AnimatedIcons.menu_close,
+      animatedIconTheme: IconThemeData(size: 22.0),
+      //child: Icon(Icons.add),
+      onOpen: () => print('OPENING DIAL'),
+      onClose: () => print('DIAL CLOSED'),
 //         scrollVisible: FontAwesomeIcons.scroll,
-         overlayColor: Colors.black,
-         overlayOpacity: 0.7,
-         children: [
-           MenuItem(
-             child: Icon(Icons.picture_as_pdf, color: Colors.black),
-             title: "Create PDF",
-             titleColor: Colors.white,
-             subtitle: "Convert all scans into PDF",
-             subTitleColor: Colors.white,
-             backgroundColor: Colors.deepOrange,
-             onTap: () => createPdf(),
-           ),
-           MenuItem(
-             child: Icon(Icons.image, color: Colors.black),
-             title: "Import Images",
-             titleColor: Colors.white,
-             subtitle: "Add images from your files",
-             subTitleColor: Colors.white,
-             backgroundColor: Colors.green,
-             onTap: () {
+      overlayColor: Colors.black,
+      overlayOpacity: 0.7,
+      children: [
+        MenuItem(
+          child: Icon(Icons.picture_as_pdf, color: Colors.black),
+          title: "Create PDF",
+          titleColor: Colors.white,
+          subtitle: "Convert all scans into PDF",
+          subTitleColor: Colors.white,
+          backgroundColor: Colors.deepOrange,
+          onTap: () => createPdf(),
+        ),
+        MenuItem(
+          child: Icon(Icons.image, color: Colors.black),
+          title: "Import Images",
+          titleColor: Colors.white,
+          subtitle: "Add images from your files",
+          subTitleColor: Colors.white,
+          backgroundColor: Colors.green,
+          onTap: () {
 //               Navigator.pop(context);
-               importImage();
+            importImage();
 
 
-             },
-           ),
-           MenuItem(
-             child: Icon(Icons.pages, color: Colors.black),
-             title: "Add Page",
-             titleColor: Colors.white,
-             subtitle: "Scan more in the document",
-             subTitleColor: Colors.white,
-             backgroundColor: Colors.blue,
-             onTap: () {
+          },
+        ),
+        MenuItem(
+            child: Icon(Icons.pages, color: Colors.black),
+            title: "Add Page",
+            titleColor: Colors.white,
+            subtitle: "Scan more in the document",
+            subTitleColor: Colors.white,
+            backgroundColor: Colors.blue,
+            onTap: () {
 //               Navigator.pop(context);
-               startDocumentScanning();
+              startDocumentScanning();
 //               _updatePagesList();
-             }
-           ),
+            }
+        ),
 
-           MenuItem(
-               child: Icon(Icons.delete, color: Colors.black),
-               title: "Delete All",
-               titleColor: Colors.white,
-               subtitle: "Clear all scanned images",
-               subTitleColor: Colors.white,
-               backgroundColor: Colors.red,
-               onTap: () {
+        MenuItem(
+            child: Icon(Icons.delete, color: Colors.black),
+            title: "Delete All",
+            titleColor: Colors.white,
+            subtitle: "Clear all scanned images",
+            subTitleColor: Colors.white,
+            backgroundColor: Colors.red,
+            onTap: () {
 //               Navigator.pop(context);
-                 pR.clearPages();
-                Navigator.pop(context);
-               gotoImagesView();
-               }
-           ),
+              pR.clearPages();
+              Navigator.pop(context);
+              gotoImagesView();
+            }
+        ),
 
-         ],
-       );
+      ],
+    );
 //     );
-   }
+  }
 
 
 
@@ -479,6 +479,7 @@ class _TrainingScreenState extends State<TrainingScreen>
 
   importImage() async {
     try {
+      print("Entered import images");
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
       print("Calling createImage");
       await createPage(image.uri);
@@ -592,7 +593,6 @@ class _TrainingScreenState extends State<TrainingScreen>
     return false;
   }
 }
-
 
 
 

@@ -136,7 +136,10 @@ class PagesPreviewWidgetState extends State<PagesPreviewWidget> {
   deletePage(c.Page page) async {
     try {
       await ScanbotSdk.deletePage(page);
-      this._pageRepository.removePage(page);
+      _pageRepository.removePage(page);
+//      setState(() {
+//        this._pageRepository = _pageRepository;
+//      });
 
       Navigator.pop(context,this._pageRepository);
     } catch (e) {

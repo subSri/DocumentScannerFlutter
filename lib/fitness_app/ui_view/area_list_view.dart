@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 import 'package:scanbot_sdk_example_flutter/ui/pages_widget.dart';
 import 'package:scanbot_sdk/common_data.dart' as c;
@@ -24,12 +24,13 @@ class _AreaListViewState extends State<AreaListView>
   List<c.Page> areaListData;
   _AreaListViewState(this.pR){
     if (pR!=null){
-    this.areaListData = this.pR.pages;
-    print("AreaList");
-    print(areaListData.length);
-  }}
+      this.areaListData = this.pR.pages;
+      print("AreaList");
+      print(areaListData.length);
+    }}
   PageRepository pR;
 
+var disposev = true;
   AnimationController animationController;
 
 
@@ -53,6 +54,7 @@ class _AreaListViewState extends State<AreaListView>
 
   @override
   void dispose() {
+    disposev = false;
     animationController.dispose();
     super.dispose();
   }
@@ -94,7 +96,9 @@ class _AreaListViewState extends State<AreaListView>
                                 curve: Curves.fastOutSlowIn),
                           ),
                         );
-                        animationController.forward();
+                        if (disposev==true) {
+                          animationController.forward();
+                        }
                         return AreaView(
                           context: context,
                           pR: pR,
@@ -121,7 +125,7 @@ class _AreaListViewState extends State<AreaListView>
       );
     }
 
-  else{
+    else{
       return AnimatedBuilder(
         animation: widget.mainScreenAnimationController,
         builder: (BuildContext context, Widget child) {
@@ -133,9 +137,9 @@ class _AreaListViewState extends State<AreaListView>
               child: AspectRatio(
                 aspectRatio: 0.8,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8),
+                    padding: const EdgeInsets.only(left: 8.0, right: 8),
                     child:Center(
-                      child:Text("You havent Scanned/Imported any Images yet")
+                        child:Text("You havent Scanned/Imported any Images yet")
                     )
 //                  child: GridView(
 //
@@ -190,22 +194,23 @@ class _AreaListViewState extends State<AreaListView>
 
 
 
+// ignore: must_be_immutable
 class AreaView extends StatelessWidget {
   final int index;
 
-   List<c.Page> alist;
+  List<c.Page> alist;
 
-    PageRepository pR;
+  PageRepository pR;
 
   final BuildContext context;
 
 //  BuildContext context;
 
 
-   AreaView( {
+  AreaView( {
     Key key,
-     this.context,
-     this.pR,
+    this.context,
+    this.pR,
     this.index,
     this.alist,
     this.uri,
@@ -213,9 +218,11 @@ class AreaView extends StatelessWidget {
     this.animation,
   }){
 
-       this.image = PageWidget(uri);
-
-   }
+    this.image = PageWidget(uri);
+//    if (this.image == null){
+//      Navigator.pop(context);
+//    }
+  }
 
 
 
@@ -232,7 +239,7 @@ class AreaView extends StatelessWidget {
 
   Widget image ;
 
-  
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -248,9 +255,9 @@ class AreaView extends StatelessWidget {
             transform: Matrix4.translationValues(
                 0.0, 50 * (1.0 - animation.value), 0.0),
 
-             child: Container(
-                //height: MediaQuery.of(context).size.height / 2,
-                height: 100.0,
+            child: Container(
+              //height: MediaQuery.of(context).size.height / 2,
+              height: 100.0,
 
 
               decoration: BoxDecoration(
@@ -278,39 +285,38 @@ class AreaView extends StatelessWidget {
                   splashColor: FintnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
                   onTap: () {
 //                    print(context);
-                     showOperationsPage(alist[index]);
+                    showOperationsPage(alist[index]);
                   },
 
-                    child: Column(
+                  child: Column(
 
                     children: <Widget>[
                       Padding(
                         padding:
-                            const EdgeInsets.only(top: 5, left: 5, right: 5,bottom:5),
+                        const EdgeInsets.only(top: 5, left: 5, right: 5,bottom:5),
 
-                          child:  image,
+                        child:  image,
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-            ),
+          ),
 //          ),
         );
       },
     );
-    
+
   }
 
   showOperationsPage(c.Page  page) async {
 ////    if(!mounted) {print(mounted) ;
 ////    return;}
-
-      print(pR.pages.length);
+    print(pR.pages.length);
 //    return;
 
-      await Navigator.push(
+    await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => PageOperations(page, pR)),
     );
@@ -321,13 +327,24 @@ class AreaView extends StatelessWidget {
     // ignore: invalid_use_of_protected_member
     print("Dance");
     print(pR.pages.length);
-    _AreaListViewState(pR)._updatePagesList();
+//     _AreaListViewState(pR)._updatePagesList();
+    Navigator.pop(context);
+    gotoImagesView();
+//    Navigator.push(
+//      context,
+//      MaterialPageRoute(builder: (context) => TrainingScreen(pR:pR)),
+//    );
 
+
+  }
+  gotoImagesView() async {
+    imageCache.clear();
+    return await Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => TrainingScreen(
+        pR: pR,
+        animationController:animationController ,
+      )),
+    );
   }
 
 }
-
-
-
-
-

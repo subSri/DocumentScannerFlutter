@@ -12,6 +12,11 @@ class PageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // workaround - see https://github.com/flutter/flutter/issues/17419
     var file = File.fromUri(path);
+
+    if (file.existsSync() == false){
+      print("File not exists");
+      return Container();
+    }
     var bytes = file.readAsBytesSync();
     //
      var image = Image.file(

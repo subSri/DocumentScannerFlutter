@@ -81,13 +81,13 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (BuildContext context) {
                     return
-                      PdfPreview(animationController: animationController
+                      PdfPreview(pR:pR,animationController: animationController
                       );
                   })
               );
             }
             if (index==1) {
-              Navigator.pop(context);
+
              Navigator.of(context).push(
                   MaterialPageRoute(builder: (BuildContext context) {
                     return

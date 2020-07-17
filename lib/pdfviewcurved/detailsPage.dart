@@ -66,7 +66,7 @@ Future<void> testStatus() async{
   if (_status == PermissionStatus.granted){
     print("Granted");
     setState(() {
-      this.allfiles = dir.listSync(recursive: false, followLinks: false);
+      this.allfiles = dir.listSync(recursive: true, followLinks: false);
 
 
         if (_files!=null){
@@ -205,25 +205,25 @@ Future<void> testStatus() async{
                   FitnessAppHomeScreen(pR);})
                 );
               }
-              if (index==2) {
-                Navigator.pop(context);
+//              if (index==2) {
+//                Navigator.pop(context);
+//
+//                Navigator.of(context).push(
+//                    MaterialPageRoute(builder: (BuildContext context) {
+//                      return
+//                        PdfPreview(
+//                            animationController: widget.animationController
+//                        );
+//                    })
+//                );
+//              }
+              if (index==1) {
 
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (BuildContext context) {
                       return
-                        PdfPreview(
-                            animationController: widget.animationController
-                        );
-                    })
-                );
-              }
-              if (index==1) {
-                Navigator.pop(context);
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (BuildContext context) {
-                      return
                         TrainingScreen(
-                            pR: pR, animationController: animationController
+                            pR: pR, animationController: widget.animationController,
                         );
                     })
                 );
@@ -265,7 +265,8 @@ Future<void> testStatus() async{
             itemCount: listViews.length,
 //            scrollDirection: Axis.vertical,
             itemBuilder: (BuildContext context, int index) {
-              widget.animationController.forward();
+
+//              widget.animationController.forward();
               return listViews[index];
             },
           );
@@ -343,17 +344,17 @@ Future<void> testStatus() async{
     );
   }
 
-
-  void _updatePdflist() {
-
-    Future.delayed(Duration(microseconds: 500)).then((val) {
-      setState(() {
-        this._files = dir.listSync(recursive: false, followLinks: false);
-      });
-    });
-  }
-
-
+//
+//  void _updatePdflist() {
+//
+//    Future.delayed(Duration(microseconds: 500)).then((val) {
+//      setState(() {
+//        this._files = dir.listSync(recursive: false, followLinks: false);
+//      });
+//    });
+//  }
+//
+//
 
 
 

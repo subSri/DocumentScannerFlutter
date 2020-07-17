@@ -57,7 +57,7 @@ Directory dir;
 
     Future.delayed(Duration(microseconds: 500)).then((val) {
       setState(() {
-        this.allfiles = dir.listSync(recursive: false, followLinks: false);
+        this.allfiles = dir.listSync(recursive: true, followLinks: false);
 
 
         if (files!=null){
@@ -105,7 +105,7 @@ Directory dir;
                           .size
                           .height,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.greenAccent,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(75.0)),
                       ),
@@ -222,7 +222,7 @@ Directory dir;
       child:Container(
 //      color:Colors.amber,
       child:Material(
-        color: Colors.white,
+        color: Colors.greenAccent,
         child: InkWell(
 
 
