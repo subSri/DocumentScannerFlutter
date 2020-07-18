@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
+import 'package:scanbot_sdk_example_flutter/ui/page_operations_filter.dart';
 import 'package:scanbot_sdk_example_flutter/ui/pages_widget.dart';
 import 'package:scanbot_sdk/common_data.dart' as c;
 import '../fintness_app_theme.dart';

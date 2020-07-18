@@ -13,6 +13,7 @@ import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
 import '../pages_repository.dart';
 import 'filter_all_pages_widget.dart';
 import 'operations_page_widget.dart';
+import 'page_operations_filter.dart';
 import 'pages_widget.dart';
 
 class DocumentPreview extends StatelessWidget {

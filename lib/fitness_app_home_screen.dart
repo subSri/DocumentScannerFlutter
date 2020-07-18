@@ -55,7 +55,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
       child: Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
-          index: 0,
+          index: _page,
           height: 50.0,
           items: <Widget>[
             Icon(Icons.home, size: 30),
