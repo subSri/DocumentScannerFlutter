@@ -1,7 +1,7 @@
-import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
 
-import '../fintness_app_theme.dart';
-import '../models/meals_list_data.dart';
+import 'package:scanbot_sdk_example_flutter/info/image_view/image_view_screen.dart';
+import 'package:scanbot_sdk_example_flutter/info/models/features_data.dart';
+
 import '../../main.dart';
 import 'package:flutter/material.dart';
 
@@ -22,12 +22,14 @@ import 'package:scanbot_sdk/scanbot_sdk_models.dart';
 import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
 import 'package:downloads_path_provider/downloads_path_provider.dart';
 
-import '../../fitness_app_home_screen.dart';
+
 import '../../pages_repository.dart';
 import '../../ui/menu_items.dart';
 import '../../ui/utils.dart';
 
 import 'package:image_picker/image_picker.dart';
+
+import '../generic_app_theme.dart';
 
 
 const SCANBOT_SDK_LICENSE_KEY = "cPJaWtvXEJH/saeDetb6zHk8Uo72+h" +
@@ -457,11 +459,11 @@ class MealsView extends StatelessWidget {
                                 mealsListData.titleTxt,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontFamily: FintnessAppTheme.fontName,
+                                  fontFamily: AppTheme.fontName,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
                                   letterSpacing: 0.2,
-                                  color: FintnessAppTheme.white,
+                                  color: AppTheme.white,
                                 ),
                               ),
 
@@ -479,11 +481,11 @@ class MealsView extends StatelessWidget {
                                     Text(
                                       mealsListData.meals.toString(),
                                       style: TextStyle(
-                                        fontFamily: FintnessAppTheme.fontName,
+                                        fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 10,
                                         letterSpacing: 0.1,
-                                        color: FintnessAppTheme.white,
+                                        color: AppTheme.white,
                                       ),
 
                                     ),
@@ -506,7 +508,7 @@ class MealsView extends StatelessWidget {
                       width: 94,
                       height: 84,
                       decoration: BoxDecoration(
-                        color: FintnessAppTheme.nearlyWhite.withOpacity(0.2),
+                        color: AppTheme.nearlyWhite.withOpacity(0.2),
                         shape: BoxShape.circle,
                       ),
                     ),

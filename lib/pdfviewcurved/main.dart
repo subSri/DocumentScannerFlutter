@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/fintness_app_theme.dart';
+import 'package:scanbot_sdk_example_flutter/info/generic_app_theme.dart';
 
 import 'detailsPage.dart';
 import 'package:open_file/open_file.dart';
@@ -234,7 +234,7 @@ Directory dir;
 ////                  builder: (context) => DetailsPage(heroTag: imgPath, foodName: foodName, foodPrice: price)
 //              ));
             },
-            splashColor: FintnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
+            splashColor: AppTheme.nearlyDarkBlue.withOpacity(0.2),
             child: Row(
 
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

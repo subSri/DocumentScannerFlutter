@@ -8,17 +8,19 @@ import 'package:scanbot_sdk/ocr_data.dart';
 import 'package:scanbot_sdk/render_pdf_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
+import 'package:scanbot_sdk_example_flutter/info/ui_view/image_grid_view.dart';
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 import 'package:scanbot_sdk_example_flutter/pdfviewcurved/main.dart';
 import 'package:scanbot_sdk_example_flutter/ui/filter_all_pages_widget.dart';
 import 'package:scanbot_sdk_example_flutter/ui/progress_dialog.dart';
 import 'package:scanbot_sdk_example_flutter/ui/utils.dart';
 
-import '../ui_view/area_list_view.dart';
+
 import 'package:scanbot_sdk/common_data.dart' as c;
+import '../generic_app_theme.dart';
 import '../ui_view/title_view.dart';
 import 'package:flutter/material.dart';
-import '../fintness_app_theme.dart';
+
 
 
 class TrainingScreen extends StatefulWidget {
@@ -134,7 +136,7 @@ class _TrainingScreenState extends State<TrainingScreen>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FintnessAppTheme.background,
+      color: AppTheme.background,
       child: Scaffold(
         floatingActionButton: getBoomMenu(),
         backgroundColor: Colors.transparent,
@@ -206,13 +208,13 @@ class _TrainingScreenState extends State<TrainingScreen>
                     0.0, 30 * (1.0 - topBarAnimation.value), 0.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white.withOpacity(topBarOpacity),
+                    color: AppTheme.white.withOpacity(topBarOpacity),
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(32.0),
                     ),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: FintnessAppTheme.grey
+                          color: AppTheme.grey
                               .withOpacity(0.4 * topBarOpacity),
                           offset: const Offset(1.1, 1.1),
                           blurRadius: 10.0),
@@ -239,11 +241,11 @@ class _TrainingScreenState extends State<TrainingScreen>
                                   'My Images',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontFamily: AppTheme.fontName,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 22 + 6 - 6 * topBarOpacity,
                                     letterSpacing: 1.2,
-                                    color: FintnessAppTheme.darkerText,
+                                    color: AppTheme.darkerText,
                                   ),
                                 ),
                               ),

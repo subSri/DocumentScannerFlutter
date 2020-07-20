@@ -2,7 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scanbot_sdk/common_data.dart';
 import 'package:scanbot_sdk/document_scan_data.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
+import 'package:scanbot_sdk_example_flutter/info/image_view/image_view_screen.dart';
 import 'package:scanbot_sdk_example_flutter/pdfviewcurved/main.dart';
 import 'package:scanbot_sdk_example_flutter/ui/progress_dialog.dart';
 import 'package:flutter/material.dart';
@@ -559,6 +559,7 @@ bool filtertap = true;
     }
   }
 
+  
 //  showFilterPage(c.Page page) async {
 //    if (!await checkLicenseStatus(context)) { return; }
 //

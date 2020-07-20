@@ -7,7 +7,7 @@ import 'package:scanbot_sdk/scanbot_sdk.dart';
 import 'package:scanbot_sdk_example_flutter/ui/utils.dart';
 
 class PageFiltering extends StatelessWidget {
-  c.Page _page;
+  final c.Page _page;
 
   PageFiltering(this._page);
 
@@ -42,9 +42,10 @@ class PageFiltering extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class FilterPreviewWidget extends StatefulWidget {
-  c.Page page;
-  FilterPreviewWidgetState filterPreviewWidgetState;
+  final c.Page page;
+   FilterPreviewWidgetState filterPreviewWidgetState;
 
   FilterPreviewWidget(this.page) {
     filterPreviewWidgetState = new FilterPreviewWidgetState(page);

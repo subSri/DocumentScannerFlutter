@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
+import 'package:scanbot_sdk_example_flutter/info/image_view/image_view_screen.dart';
+
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 import 'package:scanbot_sdk_example_flutter/ui/page_operations_filter.dart';
 import 'package:scanbot_sdk_example_flutter/ui/pages_widget.dart';
 import 'package:scanbot_sdk/common_data.dart' as c;
-import '../fintness_app_theme.dart';
-import '../../ui/operations_page_widget.dart';
+import '../generic_app_theme.dart';
+
 
 class AreaListView extends StatefulWidget {
   final PageRepository pR;
@@ -263,7 +264,7 @@ class AreaView extends StatelessWidget {
 
               decoration: BoxDecoration(
 
-                color: FintnessAppTheme.white,
+                color: AppTheme.white,
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(8.0),
                     bottomLeft: Radius.circular(8.0),
@@ -271,7 +272,7 @@ class AreaView extends StatelessWidget {
                     topRight: Radius.circular(8.0)),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                      color: FintnessAppTheme.grey.withOpacity(0.4),
+                      color: AppTheme.grey.withOpacity(0.4),
                       offset: const Offset(1.1, 1.1),
                       blurRadius: 10.0),
                 ],
@@ -283,7 +284,7 @@ class AreaView extends StatelessWidget {
                   highlightColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                  splashColor: FintnessAppTheme.nearlyDarkBlue.withOpacity(0.2),
+                  splashColor: AppTheme.nearlyDarkBlue.withOpacity(0.2),
                   onTap: () {
 //                    print(context);
                     showOperationsPage(alist[index]);

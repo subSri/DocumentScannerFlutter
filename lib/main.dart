@@ -1,10 +1,10 @@
 import 'dart:io';
-import 'package:scanbot_sdk_example_flutter/fitness_app_home_screen.dart';
 
 import 'app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'navigation_home_screen.dart';
+
+import 'home.dart';
 import 'pages_repository.dart';
 PageRepository _pageRepository = PageRepository();
 void main() async {
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: FitnessAppHomeScreen(_pageRepository),
+      home: AppHomeScreen(_pageRepository),
     );
   }
 }

@@ -1,7 +1,7 @@
 import '../../main.dart';
 import 'package:flutter/material.dart';
 
-import '../fintness_app_theme.dart';
+import '../generic_app_theme.dart';
 
 import 'dart:ui';
 
@@ -29,7 +29,7 @@ class GlassView extends StatelessWidget {
                   left: 24, right: 24, top: 16, bottom: 18),
               child: Container(
                 decoration: BoxDecoration(
-                  color: FintnessAppTheme.white,
+                  color: AppTheme.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(8.0),
                       bottomLeft: Radius.circular(8.0),
@@ -37,7 +37,7 @@ class GlassView extends StatelessWidget {
                       topRight: Radius.circular(8.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        color: FintnessAppTheme.grey.withOpacity(0.2),
+                        color: AppTheme.grey.withOpacity(0.2),
                         offset: Offset(1.1, 1.1),
                         blurRadius: 10.0),
                   ],
@@ -67,11 +67,11 @@ class GlassView extends StatelessWidget {
                                       'Help',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontFamily: FintnessAppTheme.fontName,
+                                        fontFamily: AppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
                                         letterSpacing: -0.2,
-                                        color: FintnessAppTheme.darkText,
+                                        color: AppTheme.darkText,
                                       ),
                                     ),
                                     Padding(
@@ -112,10 +112,10 @@ class GlassView extends StatelessWidget {
                                         '',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
+                                          fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
-                                          color: FintnessAppTheme.grey
+                                          color: AppTheme.grey
                                               .withOpacity(0.5),
                                         ),
                                       ),
@@ -145,11 +145,11 @@ class GlassView extends StatelessWidget {
                                         'FeedBack',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontFamily: FintnessAppTheme.fontName,
+                                          fontFamily: AppTheme.fontName,
                                           fontWeight: FontWeight.w500,
                                           fontSize: 16,
                                           letterSpacing: -0.2,
-                                          color: FintnessAppTheme.darkText,
+                                          color: AppTheme.darkText,
                                         ),
                                       ),
 
@@ -194,10 +194,10 @@ class GlassView extends StatelessWidget {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontFamily:
-                                                FintnessAppTheme.fontName,
+                                                AppTheme.fontName,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
-                                            color: FintnessAppTheme.grey
+                                            color: AppTheme.grey
                                                 .withOpacity(0.5),
                                           ),
                                         ),
@@ -230,11 +230,11 @@ class GlassView extends StatelessWidget {
                                           'About',
                                           style: TextStyle(
                                             fontFamily:
-                                                FintnessAppTheme.fontName,
+                                                AppTheme.fontName,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16,
                                             letterSpacing: -0.2,
-                                            color: FintnessAppTheme.darkText,
+                                            color: AppTheme.darkText,
                                           ),
                                         ),
                                         Padding(
@@ -281,10 +281,10 @@ class GlassView extends StatelessWidget {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontFamily:
-                                                  FintnessAppTheme.fontName,
+                                                  AppTheme.fontName,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12,
-                                              color: FintnessAppTheme.grey
+                                              color: AppTheme.grey
                                                   .withOpacity(0.5),
                                             ),
                                           ),
@@ -332,12 +332,7 @@ class GlassView extends StatelessWidget {
                                   bottomLeft: Radius.circular(8.0),
                                   bottomRight: Radius.circular(8.0),
                                   topRight: Radius.circular(8.0)),
-                              // boxShadow: <BoxShadow>[
-                              //   BoxShadow(
-                              //       color: FintnessAppTheme.grey.withOpacity(0.2),
-                              //       offset: Offset(1.1, 1.1),
-                              //       blurRadius: 10.0),
-                              // ],
+
                             ),
                             child: Column(
                               children: <Widget>[
@@ -348,11 +343,11 @@ class GlassView extends StatelessWidget {
                                     'Made With Love in India',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      fontFamily: FintnessAppTheme.fontName,
+                                      fontFamily: AppTheme.fontName,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
                                       letterSpacing: 0.0,
-                                      color: FintnessAppTheme.nearlyDarkBlue
+                                      color: AppTheme.nearlyDarkBlue
                                           .withOpacity(0.6),
                                     ),
                                   ),

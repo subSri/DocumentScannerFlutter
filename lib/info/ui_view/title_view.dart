@@ -1,4 +1,4 @@
-import '../fintness_app_theme.dart';
+import '../generic_app_theme.dart';
 import 'package:flutter/material.dart';
 
 class TitleView extends StatelessWidget {
@@ -35,11 +35,11 @@ class TitleView extends StatelessWidget {
                         titleTxt,
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontFamily: FintnessAppTheme.fontName,
+                          fontFamily: AppTheme.fontName,
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           letterSpacing: 0.5,
-                          color: FintnessAppTheme.lightText,
+                          color: AppTheme.lightText,
                         ),
                       ),
                     ),
@@ -55,11 +55,11 @@ class TitleView extends StatelessWidget {
                               subTxt,
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                fontFamily: FintnessAppTheme.fontName,
+                                fontFamily: AppTheme.fontName,
                                 fontWeight: FontWeight.normal,
                                 fontSize: 16,
                                 letterSpacing: 0.5,
-                                color: FintnessAppTheme.nearlyDarkBlue,
+                                color: AppTheme.nearlyDarkBlue,
                               ),
                             ),
                             SizedBox(
@@ -67,7 +67,7 @@ class TitleView extends StatelessWidget {
                               width: 26,
 //                              child: Icon(
 ////                                Icons.arrow_forward,
-//                                color: FintnessAppTheme.darkText,
+//                                color: AppTheme.darkText,
 //                                size: 18,
 //                              ),
                             ),

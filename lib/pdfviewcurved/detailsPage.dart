@@ -3,13 +3,15 @@ import 'dart:io';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:downloads_path_provider/downloads_path_provider.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app_home_screen.dart';
+import 'package:scanbot_sdk_example_flutter/info/generic_app_theme.dart';
+import 'package:scanbot_sdk_example_flutter/info/image_view/image_view_screen.dart';
+import 'package:scanbot_sdk_example_flutter/info/ui_view/title_view.dart';
+
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 
-import '../fitness_app/ui_view/title_view.dart';
 import 'package:flutter/material.dart';
-import '../fitness_app/fintness_app_theme.dart';
+
+import '../home.dart';
 import 'main.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -180,7 +182,7 @@ Future<void> testStatus() async{
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FintnessAppTheme.background,
+      color: AppTheme.background,
       child: Scaffold(
         bottomNavigationBar:CurvedNavigationBar(
             key: _bottomNavigationKey,
@@ -202,7 +204,7 @@ Future<void> testStatus() async{
               if (index==0){
                 Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return
-                  FitnessAppHomeScreen(pR);})
+                  AppHomeScreen(pR);})
                 );
               }
 //              if (index==2) {
@@ -288,13 +290,13 @@ Future<void> testStatus() async{
                     0.0, 30 * (1.0 - topBarAnimation.value), 0.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: FintnessAppTheme.white.withOpacity(topBarOpacity),
+                    color: AppTheme.white.withOpacity(topBarOpacity),
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(32.0),
                     ),
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          color: FintnessAppTheme.grey
+                          color: AppTheme.grey
                               .withOpacity(0.4 * topBarOpacity),
                           offset: const Offset(1.1, 1.1),
                           blurRadius: 10.0),
@@ -321,11 +323,11 @@ Future<void> testStatus() async{
                                   'My Documents',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontFamily: FintnessAppTheme.fontName,
+                                    fontFamily: AppTheme.fontName,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 22 + 6 - 6 * topBarOpacity,
                                     letterSpacing: 1.2,
-                                    color: FintnessAppTheme.darkerText,
+                                    color: AppTheme.darkerText,
                                   ),
                                 ),
                               ),

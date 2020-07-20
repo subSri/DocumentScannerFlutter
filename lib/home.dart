@@ -1,31 +1,33 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:scanbot_sdk_example_flutter/fitness_app/traning/training_screen.dart';
+
 import 'package:scanbot_sdk_example_flutter/pages_repository.dart';
 import 'package:flutter/material.dart';
-import 'fitness_app/fintness_app_theme.dart';
-import 'fitness_app/my_diary/my_diary_screen.dart';
+
+import 'info/generic_app_theme.dart';
+import 'info/image_view/image_view_screen.dart';
+import 'info/main_screen/home_screen.dart';
 import 'pages_repository.dart';
 import 'pdfviewcurved/detailsPage.dart';
 
-class FitnessAppHomeScreen extends StatefulWidget {
+class AppHomeScreen extends StatefulWidget {
   final PageRepository pR;
 
-  FitnessAppHomeScreen(this.pR);
+  AppHomeScreen(this.pR);
 
   @override
-  _FitnessAppHomeScreenState createState() => _FitnessAppHomeScreenState(pR);
+  AppHomeScreenState createState() => AppHomeScreenState(pR);
 }
 
-class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
+class AppHomeScreenState extends State<AppHomeScreen>
     with TickerProviderStateMixin {
 
-  _FitnessAppHomeScreenState(this.pR);
+  AppHomeScreenState(this.pR);
   PageRepository pR;
   AnimationController animationController;
 //  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
 
   Widget tabBody = Container(
-    color: FintnessAppTheme.background,
+    color: AppTheme.background,
   );
   @override
   void initState() {
@@ -51,7 +53,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: FintnessAppTheme.background,
+      color: AppTheme.background,
       child: Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,

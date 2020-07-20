@@ -1,5 +1,5 @@
 import 'dart:ffi';
-import '../mainfit.dart';
+
 
 class MealsListData {
   MealsListData({
